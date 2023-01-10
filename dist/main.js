@@ -1,0 +1,1 @@
+(()=>{var e;e=new Date,console.log(`Hello Brendan, today is ${e}!`)})();
