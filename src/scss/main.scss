@@ -1,0 +1,8 @@
+@import "./resets";
+@import "./variables";
+
+body {
+	display: grid;
+	min-height: 100vh;
+	grid-template-rows: max-content auto max-content;
+}
