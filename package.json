@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc --noEmitOnError --target es2015 ./src/index.ts",
     "build": "webpack",
-    "start": "webpack server --open"
+    "start": "webpack server --open",
+    "deploy": "webpack && git add . && git commit -m 'rebuild' && git push && git push ventra"
   },
   "author": "",
   "license": "ISC",
