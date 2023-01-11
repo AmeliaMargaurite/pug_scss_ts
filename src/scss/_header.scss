@@ -1,0 +1,41 @@
+header {
+	--text-color: var(--secondary);
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: var(--page_padding);
+	background: var(--primary);
+	color: var(--text-color);
+
+	a.logo {
+		text-decoration: none;
+		h1 {
+			color: var(--text-color);
+		}
+		img {
+			max-width: 25rem;
+		}
+	}
+
+	nav {
+		ul {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			column-gap: 0.8rem;
+			height: 100%;
+
+			li {
+				list-style: none;
+				a {
+					color: var(--text-color);
+					font-size: 2.4rem;
+					text-decoration: none;
+
+					&.current {
+						color: var(--highlight);
+					}
+				}
+			}
+		}
+	}
+}

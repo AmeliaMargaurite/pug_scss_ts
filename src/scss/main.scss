@@ -1,8 +1,27 @@
 @import "./resets";
 @import "./variables";
+@import "./header";
+@import "./footer";
 
 body {
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: max-content auto max-content;
+}
+
+main {
+	padding: var(--page_padding);
+}
+
+.skip-to-content-link {
+	position: absolute;
+	left: 50%;
+	transform: translateY(-100%);
+	padding: 0.8rem;
+	border: 1px solid var(--primary, black);
+	border-radius: 0.4rem;
+
+	&:focus {
+		transform: translateY(0%);
+	}
 }

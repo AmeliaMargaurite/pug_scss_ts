@@ -1,5 +1,5 @@
-extends ../views/layout.pug
-block content
+include ../mixins/page_layout.pug
+
++page_layout("Home")
   h1 Hello World! 
   a(href='/about' ) About
-  //- script(src=require('index.js'))

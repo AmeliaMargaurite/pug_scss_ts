@@ -19,16 +19,21 @@ const alterPugFolderStructure = (pathData) => {
 
 module.exports = {
 	mode: "development",
-	output: {
-		path: path.join(__dirname, "dist/"),
-		publicPath: "/",
-		clean: true,
-	},
 	entry: {
 		// index: "./src/index.js",
 		index: "./src/pages/index.pug",
 		about: "./src/pages/about.pug",
 		"about/things": "./src/pages/about/things.pug",
+	},
+	output: {
+		path: path.join(__dirname, "dist/"),
+		publicPath: "/",
+		clean: true,
+	},
+	resolve: {
+		alias: {
+			Images: path.join(__dirname, "./src/images/"),
+		},
 	},
 	// inline-source-map not for production use!
 	devtool: "inline-source-map",

@@ -1,0 +1,15 @@
+include ./page_header.pug
+
+mixin page_layout(title)
+  doctype html 
+  html 
+    head 
+      title= title
+      link(href=require('../scss/main.scss') rel='stylesheet')
+    body
+      +page_header(title)
+      main#main 
+        block
+    
+      footer
+        p copyright n such
