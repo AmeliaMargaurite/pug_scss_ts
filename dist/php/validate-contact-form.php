@@ -6,6 +6,8 @@ function exitWithFailure($message)
   echo 'Error: ' . $message;
 }
 
+var_dump($_POST, $_SERVER);
+
 if (
   $_SERVER['REQUEST_METHOD'] === 'POST'
   && isset($_POST['submit'])
