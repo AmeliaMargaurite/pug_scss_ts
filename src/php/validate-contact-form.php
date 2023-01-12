@@ -4,7 +4,7 @@ include_once('./send-contact-form.php');
 function exitWithFailure($message)
 {
   echo 'Error: ' . $message;
-  exit();
+
 }
 
 if (
