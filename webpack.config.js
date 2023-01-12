@@ -34,6 +34,7 @@ module.exports = {
 		alias: {
 			Images: path.join(__dirname, "./src/images/"),
 		},
+		// extensions: [".tsx", ".ts", ".js"],
 	},
 	// inline-source-map not for production use!
 	devtool: "inline-source-map",
@@ -44,9 +45,6 @@ module.exports = {
 		new PugPlugin({
 			filename: alterPugFolderStructure,
 			pretty: true,
-			html: {
-				filename: "/[name]/index.html",
-			},
 			js: {
 				filename: "/js/[name].[contenthash].js",
 			},
@@ -60,6 +58,11 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.tsx?$/,
+				use: "ts-loader",
+				exclude: /node_modules/,
+			},
 			{
 				test: /\.s[ac]ss$/i,
 				use: [

@@ -5,4 +5,19 @@
 	--secondary: var(--light);
 	--page_padding: 3.2rem;
 	--highlight: #06cf82;
+
+	// Z INDEXES
+	--below-menu-zIndex: 3;
+	--menu-zIndex: 5;
+	--menu-btn-zIndex: 10;
 }
+
+// BREAKPOINTS
+
+$xxsmall: 425px;
+$xsmall: 501px;
+$small: 768px;
+$medium: 1024px;
+$large: 1440px;
+$xlarge: 2560px;
+$wholeMenuMinWidth: $small;

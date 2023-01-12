@@ -1,4 +1,8 @@
-include ../mixins/page_layout.pug
-+page_layout("About")
+extends ../mixins/page_layout.pug
+
+block variables
+  - var title = 'About'
+
+block content
   h1 About page! 
   a(href='/' ) Home

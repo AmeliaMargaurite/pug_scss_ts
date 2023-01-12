@@ -1,6 +1,9 @@
-include ../mixins/page_layout.pug
+extends ../mixins/page_layout.pug
 
-+page_layout("Home")
+block variables
+  - var title = 'Home'
+
+block content
   h1 Hello World! 
   p testing changes
   a(href='/about' ) About

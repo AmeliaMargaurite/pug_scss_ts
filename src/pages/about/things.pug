@@ -1,5 +1,8 @@
-include ../../mixins/page_layout.pug
+extends ../../mixins/page_layout.pug
 
-+page_layout("Things")
+block variables
+  - var title = 'Things'
+
+block content
   h1 Things page! 
   a(href='/' ) Home
