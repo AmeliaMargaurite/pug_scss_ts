@@ -1,5 +1,5 @@
 <?php
-
+include_once('./config.php');
 function sendContactForm(string $sender_name, string $sender_email, string $sender_message)
 {
   $sanitized_sender_name = htmlspecialchars($sender_name);

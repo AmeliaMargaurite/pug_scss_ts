@@ -1,5 +1,5 @@
 <?php
-
+include_once('./config.php');
 include_once('./send-contact-form.php');
 function exitWithFailure($message)
 {
