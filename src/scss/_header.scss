@@ -53,7 +53,7 @@ nav {
 				}
 
 				&.current:after {
-					background: var(--highlight);
+					background: hsl(var(--highlight));
 				}
 
 				&:not(.active):hover {
@@ -70,7 +70,7 @@ nav {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background: var(--dark);
+		background: hsl(var(--dark), 0.98);
 		z-index: var(--menu-zIndex);
 		grid-template-rows: max-content auto;
 		padding: var(--page_padding);
