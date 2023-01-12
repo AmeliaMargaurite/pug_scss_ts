@@ -2,7 +2,9 @@ extends ../mixins/page_layout.pug
 include ../mixins/contact_form.pug
 
 block variables
-  - var title = 'About'
+  - var title = 'Contact'
 
 block content
-  h1 About page! 
+  h1 Contact page! 
+
+  +contact_form

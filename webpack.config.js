@@ -23,7 +23,7 @@ module.exports = {
 	entry: {
 		index: "./src/pages/index.pug",
 		about: "./src/pages/about.pug",
-		"about/things": "./src/pages/about/things.pug",
+		contact: "./src/pages/contact.pug",
 	},
 	output: {
 		path: path.join(__dirname, "dist/"),

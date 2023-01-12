@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Things</title>
+    <title>About</title>
     <script src="/js/runtime.0b6a04fa7dcd5505698a.js"> </script><script src="/js/index.3.31c6a7737d0b5a077f35.js"> </script>
     <link href="/css/main.0770a8c8fb222298999d95322252f051.css" rel="stylesheet" />
   </head>
@@ -13,12 +13,20 @@
       <nav id="nav">
         <ul>
           <li><a href="/">home</a></li>
-          <li><a href="/about">about</a></li>
+          <li><a class="current" href="/about">about</a></li>
+          <li><a href="/contact">contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main">
-      <h1>Things page! </h1><a href="/">Home</a>
+      <h1>Contact page! </h1>
+      <form class="contact_form" action="../php/contact-form.php" method="POST"> <label for="name">
+          <p>Name:</p><input type="text" id="name" name="name">
+        </label><label for="email">
+          <p>Email: </p><input type="email" id="email" name="email">
+        </label><label for="message">
+          <p>Message: </p><textarea name="message" cols="30" rows="10"> </textarea>
+        </label><button class="btn primary" type="submit">Send</button></form>
     </main>
     <footer>
       <p>copyright n such</p>
