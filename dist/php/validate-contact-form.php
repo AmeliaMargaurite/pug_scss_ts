@@ -1,9 +1,9 @@
 <?php
 
 include_once('./send-contact-form.php');
-function exitWithFailure()
+function exitWithFailure($message)
 {
-  echo 'fail';
+  echo 'Error: ' . $message;
 }
 
 if (
@@ -15,14 +15,14 @@ if (
 
   // Check honey pot first
   if (isset($_POST['pot']) && !empty($_POST['pot'])) {
-    exitWithFailure();
+    exitWithFailure('Pot was filled');
   }
 
   // Validate name
   if (!empty($_POST['name'] && is_string($_POST['name']))) {
     $name = $_POST['name'];
   } else {
-    exitWithFailure();
+    exitWithFailure('Name input failed');
   }
 
   // Validate email
@@ -30,18 +30,18 @@ if (
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
     if ($email === false) {
-      exitWithFailure();
+      exitWithFailure('Email failed validation');
     }
 
   } else {
-    exitWithFailure();
+    exitWithFailure('Email input failed');
   }
 
   // Validate message
   if (!empty($_POST['message'] && is_string($_POST['message']))) {
     $message = $_POST['message'];
   } else {
-    exitWithFailure();
+    exitWithFailure('Message input failed');
   }
 
   if ($name && $email && $message) {
@@ -49,5 +49,5 @@ if (
   }
 
 } else {
-  exitWithFailure();
+  exitWithFailure('Form submitted incorrectly');
 }
