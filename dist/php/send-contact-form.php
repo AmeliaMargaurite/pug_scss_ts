@@ -12,9 +12,9 @@ function sendContactForm(string $sender_name, string $sender_email, string $send
 
 function sendToSiteOwner(string $sender_name, string $sender_email, string $sender_message)
 {
-  $to = $_ENV('SITE_EMAIL');
+  $to = $_ENV['SITE_EMAIL'];
   $subject = "Site message from $sender_name";
-  $headers = array('From' => $_ENV('SITE_NAME'), 'Reply-To' => $sender_email);
+  $headers = array('From' => $_ENV['SITE_NAME'], 'Reply-To' => $sender_email);
 
   $message = "
     <html>
@@ -48,7 +48,7 @@ function sendConfirmationToSender(string $sender_name, string $sender_email, str
   $to = $sender_email;
   $site_name = $_ENV['SITE_NAME'];
   $subject = "Confirmation of form submitted on $site_name.";
-  $headers = array('From' => $_ENV('SITE_NAME'));
+  $headers = array('From' => $_ENV['SITE_NAME']);
 
   $message = "
     <html>
