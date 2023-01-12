@@ -4,9 +4,8 @@ include_once('./send-contact-form.php');
 function exitWithFailure($message)
 {
   echo 'Error: ' . $message;
+  exit();
 }
-
-var_dump($_POST, $_SERVER);
 
 if (
   $_SERVER['REQUEST_METHOD'] === 'POST'
