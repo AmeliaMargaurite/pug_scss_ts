@@ -1,0 +1,12 @@
+button.btn,
+a.btn {
+	padding: var(--input_padding);
+	background: hsl(var(--primary));
+	color: hsl(var(--secondary));
+	border-radius: var(--input_border_radius);
+	box-shadow: var(--shadow-elevation-medium);
+
+	&.secondary {
+		border: var(--input_border);
+	}
+}

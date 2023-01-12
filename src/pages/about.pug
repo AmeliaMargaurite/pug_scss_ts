@@ -1,4 +1,5 @@
 extends ../mixins/page_layout.pug
+include ../mixins/contact_form.pug
 
 block variables
   - var title = 'About'
@@ -6,3 +7,5 @@ block variables
 block content
   h1 About page! 
   a(href='/' ) Home
+
+  +contact_form

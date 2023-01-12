@@ -1,11 +1,11 @@
 @import "./menuButton";
 
 header {
-	--text-color: var(--secondary);
+	--text-color: hsl(var(--secondary));
 	display: grid;
 	grid-template-columns: auto auto;
 	padding: 1.6rem var(--page_padding);
-	background: var(--primary);
+	background: hsl(var(--primary));
 	color: var(--text-color);
 
 	a.logo {
@@ -58,7 +58,7 @@ nav {
 
 				&:not(.active):hover {
 					&:after {
-						background: var(--primary);
+						background: hsl(var(--primary));
 					}
 				}
 			}

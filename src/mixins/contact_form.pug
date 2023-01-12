@@ -1,0 +1,16 @@
+mixin contact_form 
+
+  form.contact_form(action="../php/contact-form.php", method="POST") 
+    label(for="name")
+      p Name:
+      input(type="text", id="name", name="name")
+
+    label(for="email") 
+      p Email: 
+      input(type="email", id="email", name="email")
+    
+    label(for="message") 
+      p Message: 
+      textarea(name="message", cols="30", rows="10") 
+
+    button(type="submit", class="btn primary") Send

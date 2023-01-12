@@ -1,4 +1,5 @@
 const PugPlugin = require("pug-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 const sourcePath = path.join(__dirname, "src");
@@ -20,7 +21,6 @@ const alterPugFolderStructure = (pathData) => {
 module.exports = {
 	mode: "development",
 	entry: {
-		// index: "./src/index.js",
 		index: "./src/pages/index.pug",
 		about: "./src/pages/about.pug",
 		"about/things": "./src/pages/about/things.pug",
@@ -51,6 +51,14 @@ module.exports = {
 			css: {
 				filename: "/css/[name].[contenthash].css",
 			},
+		}),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: path.join(__dirname, "src/php"),
+					to: path.join(__dirname, "dist/php"),
+				},
+			],
 		}),
 	],
 	optimization: {
