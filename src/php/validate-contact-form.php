@@ -22,7 +22,7 @@ if (
   }
 
   // Validate name
-  if (!empty($_POST['name'] && is_string($_POST['name']))) {
+  if (!empty($_POST['name']) && is_string($_POST['name'])) {
     $name = $_POST['name'];
   } else {
     exitWithFailure('Name input failed');
@@ -41,7 +41,7 @@ if (
   }
 
   // Validate message
-  if (!empty($_POST['message'] && is_string($_POST['message']))) {
+  if (!empty($_POST['message']) && is_string($_POST['message'])) {
     $message = $_POST['message'];
   } else {
     exitWithFailure('Message input failed');
