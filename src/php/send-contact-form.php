@@ -51,7 +51,7 @@ function sendToSiteOwner(string $sender_name, string $sender_email, string $send
 function sendConfirmationToSender(string $sender_name, string $sender_email, string $sender_message)
 {
   $to = $sender_email;
-  $site_name = $_ENV['MAIL_FROM'];
+  $site_name = $_ENV['SITE_NAME'];
   $subject = "Confirmation of form submitted on $site_name.";
   $headers = array(
     'From' => $_ENV['MAIL_FROM'],
