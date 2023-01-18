@@ -5,7 +5,7 @@ define('IS_LIVE', getenv("ENVIRONMENT") === 'production');
 define('HOME_PATH', IS_LIVE ? '' : $local); // Used in url paths
 define('HOME_URL', IS_LIVE ? '/' : $local); // Used for a direct link to home only
 
-define('ROOTPATH', __DIR__);
+define('ROOTPATH', dirname(__DIR__, 1));
 
 define('VENDOR_AUTOLOAD', IS_LIVE ? ROOTPATH . '/vendor/autoload.php' : dirname(__DIR__, 2) . '/vendor/autoload.php');
 
@@ -15,7 +15,7 @@ include_once(VENDOR_AUTOLOAD);
 
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(IS_LIVE ? dirname(__DIR__) : dirname(__DIR__, 2));
+$dotenv = Dotenv::createImmutable(IS_LIVE ? ROOTPATH : dirname(__DIR__, 2));
 
 if ($dotenv) {
   $dotenv->load();
