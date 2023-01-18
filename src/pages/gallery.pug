@@ -1,0 +1,23 @@
+extends ../mixins/page_layout.pug
+include ../mixins/contact_form.pug
+
+block variables
+  - var title = 'Gallery'
+
+block content
+  h1 Gallery! 
+  - var images = require('../components/gallery/gallery_data.json')
+  .gallery__wrapper
+    each image in images
+      .img__wrapper(data-size="1920") 
+        img(src=require('../components/gallery/images/' + image.name + '.jpg?size=100'), class="placeholder")
+        picture
+          source(srcset=require('../components/gallery/images/' + image.name + '.jpg?format=webp&sizes[]=480,sizes[]=640,sizes[]=800,sizes[]=1024,sizes[]=1450,sizes[]=1920'), type="image/webp")
+          img(src=require('../components/gallery/images/' + image.name + '.jpg'), alt= image.alt)
+
+  gallery-layout(data-images-path="/images")
+block scripts 
+  script(src=require("../components/gallery/gallery.ts") )
+
+
+  

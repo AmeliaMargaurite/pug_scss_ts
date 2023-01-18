@@ -1,17 +1,17 @@
 mixin contact_form 
 
-  form.contact_form(action="../php/validate-contact-form.php", method="POST") 
+  form.contact_form(action="../php/validate-contact-form.php?back=/contact", method="POST") 
     label(for="name")
       p Name:
       input(type="text", id="name", name="name", required)
 
     label(for="email") 
       p Email: 
-      input(type="email", id="email", name="email", pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", required)
+      input(type="email", id="email", name="email", pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", required)
     
     label(for="message") 
       p Message: 
-      textarea(name="message", cols="30", rows="10", required) 
+      textarea(name="message", cols="30", rows="10", required)
 
     label(for="pot")
       input(type="hidden", name="pot" readonly)

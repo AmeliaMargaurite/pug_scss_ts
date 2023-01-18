@@ -24,6 +24,8 @@ module.exports = {
 		index: "./src/pages/index.pug",
 		about: "./src/pages/about.pug",
 		contact: "./src/pages/contact.pug",
+		confirmation: "./src/pages/confirmation.pug",
+		gallery: "./src/pages/gallery.pug",
 	},
 	output: {
 		path: path.join(__dirname, "dist/"),
@@ -33,6 +35,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			Images: path.join(__dirname, "./src/images/"),
+			Gallery: path.join(__dirname, "./src/components/gallery"),
 		},
 		// extensions: [".tsx", ".ts", ".js"],
 	},
@@ -81,10 +84,22 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+				test: /\.(png|jpg|jpeg)$/i,
 				type: "asset/resource",
+				use: [
+					{
+						loader: "responsive-loader",
+						options: {
+							name: "assets/img/[name].[hash].[ext]",
+						},
+					},
+				],
+			},
+			{
+				test: /\.(svg|gif)$/i,
+				type: "asset",
 				generator: {
-					filename: "assets/img/[name].[hash][ext]",
+					filename: "assets/img/[name].[hash].[ext]",
 				},
 			},
 			{

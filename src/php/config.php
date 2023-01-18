@@ -1,6 +1,22 @@
 <?php
-include_once('../vendor/autoload.php');
+$local = '/pug-test'; // localhost 
+
+define('IS_LIVE', getenv("ENVIRONMENT") === 'production');
+define('HOME_PATH', IS_LIVE ? '' : $local); // Used in url paths
+define('HOME_URL', IS_LIVE ? '/' : $local); // Used for a direct link to home only
+
+define('ROOTPATH', __DIR__);
+
+define('VENDOR_AUTOLOAD', IS_LIVE ? ROOTPATH . '/vendor/autoload.php' : dirname(__DIR__, 2) . '/vendor/autoload.php');
+
+# DOT ENV / ENVIRONMENT VARIABLES
+
+include_once(VENDOR_AUTOLOAD);
+
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
+$dotenv = Dotenv::createImmutable(IS_LIVE ? dirname(__DIR__) : dirname(__DIR__, 2));
+
+if ($dotenv) {
+  $dotenv->load();
+}
