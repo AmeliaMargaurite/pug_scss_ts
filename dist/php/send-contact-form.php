@@ -17,12 +17,12 @@ function sendToSiteOwner()
 
   $to = $_ENV['SITE_EMAIL'];
   $subject = "Site message from $sender_name";
-  $headers = array(
+  $headers = [
     'From' => $_ENV['MAIL_FROM'],
     'Reply-To' => $sender_email,
     'MIME-Version: 1.0',
     'Content-type' => 'text/html; charset=iso-8859-1'
-  );
+  ];
 
   $message = "
     <html>
@@ -46,6 +46,7 @@ function sendToSiteOwner()
 
     if (!$success) {
       $errors[] = error_get_last()['message'];
+
       return $errors;
     }
     return $errors;
@@ -65,11 +66,11 @@ function sendConfirmationToSender()
   $to = $sender_email;
   $site_name = $_ENV['SITE_NAME'];
   $subject = "Confirmation of form submitted on $site_name.";
-  $headers = array(
+  $headers = [
     'From' => $_ENV['MAIL_FROM'],
     'MIME-Version: 1.0',
     'Content-type' => 'text/html; charset=iso-8859-1'
-  );
+  ];
 
   $message = "
     <html>

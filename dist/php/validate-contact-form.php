@@ -12,15 +12,17 @@ function exitWithFailure(array $messages)
   $url_parts = parse_url($url);
   parse_str($url_parts['query'], $params);
 
+  foreach ($messages as $message) {
+    error_log($message, 0);
+  }
+
   if (isset($params['back'])) {
     redirectTo($params['back']);
 
     // Have to set up custom error handling
     // Save errors to $_SESSION? send to html page via url params?
 
-    // foreach ($messages as $message) {
-    //   echo $message . '<br/>';
-    // }
+
   } else
     redirectTo('/error');
 
