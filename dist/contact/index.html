@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Contact</title>
-    <script src="/js/runtime.0b6a04fa7dcd5505698a.js"> </script><script src="/js/index.3.31c6a7737d0b5a077f35.js"> </script>
-    <link href="/css/main.c5b3b43f702e1bcb7de34e35cc0928ce.css" rel="stylesheet" />
+    <script src="/js/runtime.9982dcb90950791c409b.js"> </script><script src="/js/index.5.91e16d2cde6b0e067fcf.js"> </script>
+    <link href="/css/main.3183ba94c96b6a89ae6af42ccb710184.css" rel="stylesheet" />
   </head>
   <body>
     <header> <a class="skip-to-content-link" href="#main">Skip to content</a><a class="logo" href="/">
@@ -15,18 +15,20 @@
           <li><a href="/">home</a></li>
           <li><a href="/about">about</a></li>
           <li><a class="current" href="/contact">contact</a></li>
+          <li><a href="/gallery">gallery</a></li>
         </ul>
       </nav>
     </header>
     <main id="main">
       <h1>Contact page! </h1>
-      <form class="contact_form" action="../php/validate-contact-form.php" method="POST"> <label for="name">
+      <form class="contact_form" action="../php/validate-contact-form.php?back=/contact" method="POST"> <label
+          for="name">
           <p>Name:</p><input type="text" id="name" name="name" required>
         </label><label for="email">
-          <p>Email: </p><input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$"
-            required>
+          <p>Email: </p><input type="email" id="email" name="email"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$" required>
         </label><label for="message">
-          <p>Message: </p><textarea name="message" cols="30" rows="10" required> </textarea>
+          <p>Message: </p><textarea name="message" cols="30" rows="10" required></textarea>
         </label><label for="pot"><input type="hidden" name="pot" readonly></label><button class="btn primary"
           type="submit" name="submit" value="submit">Send</button></form>
     </main>

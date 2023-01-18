@@ -1,17 +1,20 @@
 <?php
-include_once('./config.php');
-function sendContactForm(string $sender_name, string $sender_email, string $sender_message)
+function sendContactForm()
 {
-  $sanitized_sender_name = htmlspecialchars($sender_name);
-  $sanitized_sender_email = htmlspecialchars($sender_email);
-  $sanitized_sender_message = htmlspecialchars($sender_message);
+  $siteOwnerErrors = sendToSiteOwner();
+  $confirmationErrors = sendConfirmationToSender();
 
-  sendToSiteOwner($sanitized_sender_name, $sanitized_sender_email, $sanitized_sender_message);
-  sendConfirmationToSender($sanitized_sender_name, $sanitized_sender_email, $sanitized_sender_message);
+  return [...$siteOwnerErrors, ...$confirmationErrors];
 }
 
-function sendToSiteOwner(string $sender_name, string $sender_email, string $sender_message)
+function sendToSiteOwner()
 {
+  $errors = [];
+  $sender_name = htmlspecialchars($_POST['name']);
+  $sender_email = htmlspecialchars($_POST['email']);
+  $sender_message = htmlspecialchars($_POST['message']);
+
+
   $to = $_ENV['SITE_EMAIL'];
   $subject = "Site message from $sender_name";
   $headers = array(
@@ -38,18 +41,27 @@ function sendToSiteOwner(string $sender_name, string $sender_email, string $send
     </html>
   ";
 
-  $success = mail($to, $subject, $message, $headers);
+  if (IS_LIVE) {
+    $success = mail($to, $subject, $message, $headers);
 
-  if (!$success) {
-    $errorMessage = error_get_last()['message'];
-    echo htmlspecialchars($errorMessage);
+    if (!$success) {
+      $errors[] = error_get_last()['message'];
+      return $errors;
+    }
+    return $errors;
   } else {
-    echo 'success, send to site owner';
+    return $errors;
   }
 }
 
-function sendConfirmationToSender(string $sender_name, string $sender_email, string $sender_message)
+function sendConfirmationToSender()
 {
+  $errors = [];
+
+  $sender_name = htmlspecialchars($_POST['name']);
+  $sender_email = htmlspecialchars($_POST['email']);
+  $sender_message = htmlspecialchars($_POST['message']);
+
   $to = $sender_email;
   $site_name = $_ENV['SITE_NAME'];
   $subject = "Confirmation of form submitted on $site_name.";
@@ -78,12 +90,15 @@ function sendConfirmationToSender(string $sender_name, string $sender_email, str
     </html>
   ";
 
-  $success = mail($to, $subject, $message, $headers);
+  if (IS_LIVE) {
+    $success = mail($to, $subject, $message, $headers);
 
-  if (!$success) {
-    $errorMessage = error_get_last()['message'];
-    echo htmlspecialchars($errorMessage);
+    if (!$success) {
+      $errors[] = error_get_last()['message'];
+      return $errors;
+    }
+    return $errors;
   } else {
-    echo 'success, send confirmation to sender';
+    return $errors;
   }
 }

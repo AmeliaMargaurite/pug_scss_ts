@@ -1,56 +1,57 @@
 <?php
+
+use App\Controllers\ContactFormController;
+
+
 include_once('./config.php');
+
 include_once('./send-contact-form.php');
-function exitWithFailure($message)
+function exitWithFailure(array $messages)
 {
-  echo 'Error: ' . $message;
+  $url = $_SERVER['REQUEST_URI'];
+  $url_parts = parse_url($url);
+  parse_str($url_parts['query'], $params);
+
+  if (isset($params['back'])) {
+    redirectTo($params['back']);
+
+    // Have to set up custom error handling
+    // Save errors to $_SESSION? send to html page via url params?
+
+    // foreach ($messages as $message) {
+    //   echo $message . '<br/>';
+    // }
+  } else
+    redirectTo('/error');
+
+
 
 }
-
-var_dump($_ENV);
 
 if (
   $_SERVER['REQUEST_METHOD'] === 'POST'
   && isset($_POST['submit'])
   && !empty($_POST['submit'])
 ) {
-  $error = false;
 
-  // Check honey pot first
-  if (isset($_POST['pot']) && !empty($_POST['pot'])) {
-    exitWithFailure('Pot was filled');
+  $contact_form = new ContactFormController();
+  $errors = $contact_form->checkFields([
+    ['name' => 'pot', 'type' => 'empty'],
+    ['name' => 'name', 'type' => 'string'],
+    ['name' => 'email', 'type' => 'email'],
+    ['name' => 'message', 'type' => 'message']
+  ]);
+
+  if (count($errors) <= 0) {
+    $sendContactForm_errors = sendContactForm();
+
+    if (count($sendContactForm_errors) <= 0) {
+      redirectTo('/confirmation');
+    } else
+      $errors .= $sendContactForm_errors;
   }
 
-  // Validate name
-  if (!empty($_POST['name']) && is_string($_POST['name'])) {
-    $name = $_POST['name'];
-  } else {
-    exitWithFailure('Name input failed');
-  }
-
-  // Validate email
-  if (!empty($_POST['email'])) {
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-
-    if ($email === false) {
-      exitWithFailure('Email failed validation');
-    }
-
-  } else {
-    exitWithFailure('Email input failed');
-  }
-
-  // Validate message
-  if (!empty($_POST['message']) && is_string($_POST['message'])) {
-    $message = $_POST['message'];
-  } else {
-    exitWithFailure('Message input failed');
-  }
-
-  if ($name && $email && $message) {
-    sendContactForm($name, $email, $message);
-  }
-
+  exitWithFailure($errors);
 } else {
-  exitWithFailure('Form submitted incorrectly');
+  exitWithFailure(['Form submitted incorrectly']);
 }
