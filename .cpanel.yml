@@ -3,4 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/ameliama/pug-test.ameliamargaurite.com.au
     - /bin/cp -R dist/. $DEPLOYPATH
-    - /bin/cp composer.json $DEPLOYPATH
