@@ -20,3 +20,6 @@ $dotenv = Dotenv::createImmutable(IS_LIVE ? ROOTPATH : dirname(__DIR__, 2));
 if ($dotenv) {
   $dotenv->load();
 }
+
+// INCLUDES
+define('SEND_WITH_PHP_MAILER', ROOTPATH . '/php/send-with-PHP-mailer.php');

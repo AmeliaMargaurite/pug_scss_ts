@@ -5,29 +5,31 @@ use App\Controllers\ContactFormController;
 
 include_once('./config.php');
 
-include_once('./send-contact-form.php');
 function exitWithFailure(array $messages)
 {
   $url = $_SERVER['REQUEST_URI'];
   $url_parts = parse_url($url);
   parse_str($url_parts['query'], $params);
 
-  foreach ($messages as $message) {
+  $buildQueries = null;
+
+  foreach ($messages as $key => $message) {
+    if ($buildQueries) {
+      $buildQueries .= '&' . $key . '=' . $message;
+    } else {
+      $buildQueries = '?' . $key . '=' . $message;
+    }
     error_log($message, 0);
+    var_dump($message);
   }
 
-  if (isset($params['back'])) {
-    redirectTo($params['back']);
+  $url = $params['back'] ? $params['back'] : '/error';
 
-    // Have to set up custom error handling
-    // Save errors to $_SESSION? send to html page via url params?
+  if ($buildQueries) {
+    $url .= $buildQueries;
+  }
 
-
-  } else
-    redirectTo('/error');
-
-
-
+  redirectTo($url);
 }
 
 if (
@@ -44,16 +46,19 @@ if (
     ['name' => 'message', 'type' => 'message']
   ]);
 
-  if (count($errors) <= 0) {
-    $sendContactForm_errors = sendContactForm();
+  if ($errors && count($errors) > 0) {
+    exitWithFailure($errors);
+  } else {
+    $sendContactForm_errors = $contact_form->sendContactForm();
 
-    if (count($sendContactForm_errors) <= 0) {
+    if ($sendContactForm_errors && count($sendContactForm_errors) > 0) {
+      $errors += $sendContactForm_errors;
+      exitWithFailure($errors);
+
+    } else {
       redirectTo('/confirmation');
-    } else
-      $errors .= $sendContactForm_errors;
+    }
   }
-
-  exitWithFailure($errors);
 } else {
   exitWithFailure(['Form submitted incorrectly']);
 }
