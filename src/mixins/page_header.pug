@@ -13,7 +13,7 @@ mixin page_header(active)
     nav#nav  
       
       ul 
-        - var pages = {'home': '/', 'about': '/about', 'contact': '/contact', 'gallery': '/gallery'}
+        - var pages = {'home': '/', 'about': '/about', 'contact': '/contact', 'gallery': '/gallery', 'components': '/components'}
         each val, key in pages
           li
             a(href= val class= active.toLowerCase() === key ? 'current': undefined) #{key}

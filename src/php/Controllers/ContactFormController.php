@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Controllers;
+
+include_once(SEND_WITH_PHP_MAILER);
 
 /**
  * Summary of ContactFormController
@@ -32,6 +33,26 @@ class ContactFormController
    *  ['name' => 'name', 'type' => 'string']
    * ]
    */
+
+  public function sendContactForm()
+  {
+    $errors = [];
+    $siteOwnerError = sendToSiteOwner();
+    $confirmationError = sendConfirmationToSender();
+
+    if ($siteOwnerError) {
+      $errors['failed_submit'] = $siteOwnerError;
+    }
+
+    if ($confirmationError) {
+      $errors['failed_confirmation_mail'] = $confirmationError;
+    }
+
+    if (count($errors) > 0) {
+      return $errors;
+    }
+  }
+
   public function checkFields(array $fields)
   {
 
@@ -43,26 +64,53 @@ class ContactFormController
       if (isset($this->$fieldName) && $this->$fieldName !== null) {
 
         // Check if type string
-        if ($field['type'] === 'string' && !is_string($this->$fieldName)) {
-          $errors[] = "{$fieldName} failed validation, is not of type {$field['type']}";
+        if ($field['type'] === 'string') {
+          $error = $this->validateString($this->$fieldName);
+          if ($error) {
+            $errors[$field['type']] = $error;
+          }
         }
 
         // Check if type email
-        if ($field['type'] === 'email' && !filter_var($this->$fieldName, FILTER_VALIDATE_EMAIL)) {
-          $errors[] = "{$fieldName} failed validation, is not of type {$field['type']}";
+        if ($field['type'] === 'email') {
+          $error = $this->validateEmail($this->$fieldName);
+          if ($error) {
+            $errors[$field['type']] = $error;
+          }
         }
         // Check honey pot
       } else if ($field['type'] === 'empty') {
         if (!empty($this->$fieldName)) {
-          $errors[] = $this->$fieldName . ' is not ' . $field['type'];
+          $errors[$field['type']] = $this->$fieldName . ' is not ' . $field['type'];
         }
       } else {
-        $errors[] = $fieldName . ' not found.';
+        $errors[$field['type']] = $fieldName . ' not found.';
       }
     }
+    if (count($errors) > 0) {
+      return $errors;
+    }
 
-    return $errors;
   }
 
+  private function validateString($input)
+  {
+    if (!is_string($input)) {
+      return "{$input} failed validation, is not of type string";
+    }
+  }
+
+  private function validateEmail($input)
+  {
+    // ensure this only contains one email address
+    $email = explode(',', $input);
+    if (count($email) > 1) {
+      return "Email address is malformed";
+    }
+
+    if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+      return "{$input} failed email validation";
+    }
+  }
 
 }

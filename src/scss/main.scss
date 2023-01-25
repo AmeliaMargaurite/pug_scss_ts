@@ -5,6 +5,10 @@
 @import "./inputs";
 @import "./buttons";
 @import "./gallery";
+@import "../components/contact_form/contact_form";
+@import "../components/checkbox/checkbox";
+@import "../components/google_map/google-map";
+@import "./basics";
 
 body {
 	display: grid;

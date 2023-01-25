@@ -1,0 +1,13 @@
+extends ../mixins/page_layout.pug
+include ../components/contact_form/contact_form.pug
+include ../components/checkbox/checkboxWAll.pug
+include ../components/google_map/google_map.pug
+
+block variables
+  - var title = 'Components'
+
+block content
+  section
+    h1 Components! 
+    +googleMap('AIzaSyBIvNvfiT-nDZqQZ9EjHlb17PqJ2s_w15w', 'Map')
+    +checkboxWAll([{name: 'first'}, {name: 'second'}, {name: 'third'}], 'Checkboxes')

@@ -26,6 +26,7 @@ module.exports = {
 		contact: "./src/pages/contact.pug",
 		confirmation: "./src/pages/confirmation.pug",
 		gallery: "./src/pages/gallery.pug",
+		components: "./src/pages/components.pug",
 	},
 	output: {
 		path: path.join(__dirname, "dist/"),

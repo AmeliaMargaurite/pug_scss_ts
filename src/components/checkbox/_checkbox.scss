@@ -1,0 +1,15 @@
+.checkboxes {
+	label {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.8rem;
+		cursor: pointer;
+		&:hover {
+			background: hsl(var(--highlight));
+		}
+	}
+
+	input[type="checkbox"] {
+		width: 2.4rem;
+	}
+}

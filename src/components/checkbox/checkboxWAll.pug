@@ -1,0 +1,12 @@
+mixin checkboxWAll(choices, title = null)
+  
+  span(class="checkboxes wrapper")
+    if title
+      p.title #{title}
+    label All
+      input(type="checkbox", id="all_checkboxes")
+
+    each choice in choices 
+      label #{choice.name}
+        input(type="checkbox", name=choice.name)
+  script(src=require("./checkboxesWAll.ts"))
