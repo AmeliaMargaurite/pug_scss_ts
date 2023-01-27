@@ -48,7 +48,7 @@ module.exports = {
 	devtool: "inline-source-map",
 	devServer: {
 		static: "./dist",
-		historyApiFallback: { index: "dist/notFound404.html" },
+		historyApiFallback: { index: "/notFound404/index.html" },
 	},
 	plugins: [
 		new PugPlugin({

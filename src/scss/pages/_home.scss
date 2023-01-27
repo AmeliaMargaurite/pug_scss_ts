@@ -3,6 +3,16 @@
 		display: grid;
 		row-gap: 3.2rem;
 	}
+
+	section {
+		display: grid;
+		padding: 3.2rem;
+
+		&.textCenter {
+			text-align: center;
+		}
+	}
+
 	section.second {
 		padding-block: 8rem;
 		text-align: center;

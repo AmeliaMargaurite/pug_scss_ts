@@ -7,8 +7,10 @@
 @import "./gallery";
 @import "./basics";
 @import "./components";
-@import "./home";
-@import "./contact";
+@import "./pages/home";
+@import "./pages/contact";
+@import "./pages/services";
+@import "./pages/notFound";
 
 body {
 	display: grid;
@@ -60,14 +62,10 @@ p {
 
 ul {
 	line-height: 2;
+	padding-left: 6.4rem;
 }
 
 section {
 	display: grid;
 	row-gap: 1.6rem;
-	padding: 3.2rem;
-
-	&.textCenter {
-		text-align: center;
-	}
 }

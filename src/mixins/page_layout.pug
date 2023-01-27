@@ -4,7 +4,7 @@ block variables
 doctype html 
 html 
   head 
-    title= title === 'Home' ? 'AMDesigned' : title + ' | AMDesigned'
+    title= title === 'Home' ? 'AMDesigned' : title === 'not-found' ? 'Uh oh... | AMDesigned' : title + ' | AMDesigned'
     script(src=require("../ts/index.ts")) 
     link(href=require('../scss/main.scss') rel='stylesheet')
     link(rel="apple-touch-icon" sizes="180x180" href=require("../favicon/apple-touch-icon.png"))
