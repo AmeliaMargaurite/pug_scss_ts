@@ -1,6 +1,8 @@
 const PugPlugin = require("pug-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const autoprefixer = require("autoprefixer");
 const path = require("path");
+const webpack = require("webpack");
 
 const sourcePath = path.join(__dirname, "src");
 
@@ -22,11 +24,13 @@ module.exports = {
 	mode: "development",
 	entry: {
 		index: "./src/pages/index.pug",
-		about: "./src/pages/about.pug",
+		notFound404: "./src/pages/notFound404.pug",
 		contact: "./src/pages/contact.pug",
 		confirmation: "./src/pages/confirmation.pug",
-		gallery: "./src/pages/gallery.pug",
-		components: "./src/pages/components.pug",
+		examples: "./src/pages/examples.pug",
+		services: "./src/pages/services.pug",
+		termsConditions: "./src/pages/terms-and-conditions.pug",
+		privacyPolicy: "./src/pages/privacy-policy.pug",
 	},
 	output: {
 		path: path.join(__dirname, "dist/"),
@@ -44,6 +48,7 @@ module.exports = {
 	devtool: "inline-source-map",
 	devServer: {
 		static: "./dist",
+		historyApiFallback: { index: "dist/notFound404.html" },
 	},
 	plugins: [
 		new PugPlugin({
@@ -62,7 +67,16 @@ module.exports = {
 					from: path.join(__dirname, "src/php"),
 					to: path.join(__dirname, "dist/php"),
 				},
+				{
+					from: path.join(__dirname, "src/favicon"),
+					to: path.join(__dirname, "dist/favicon"),
+				},
 			],
+		}),
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				postcss: [autoprefixer()],
+			},
 		}),
 	],
 	optimization: {
@@ -76,10 +90,12 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.s[ac]ss$/i,
+				test: /\.scss$/i,
+				exclude: /node_modules/,
 				use: [
 					// translates css into commonjs
 					"css-loader",
+					"postcss-loader",
 					// compiles s[ac]ss to css
 					"sass-loader",
 				],

@@ -1,0 +1,49 @@
+include ../btn/btn.pug
+
+mixin build-options 
+  section.build-options 
+    h2 Build options 
+    p.subtext Get to know our general website packages. But because we know no two businesses are alike ever website package is tailor-made to your needs. 
+
+    .options__wrapper 
+      span.option 
+        p.title Let's split it
+        ul(role="list")
+          li.included Design
+          li.included Build
+          li Hosting
+          li Domain purchase
+          li.included SEO & Accessibility
+          li.included Analytics set up
+          li Ongoing maintenance
+        p.price: em Starting at $x.xx
+        +btn({icon: {class: 'arrow right', side: 'right'}})(href='/contact?package=Let\'s Split It&type=mid', class="mini full-width secondary") This is me
+        
+
+      span.option.hero 
+        p.title We'll do it all
+        ul(role="list")
+          li.included Design
+          li.included Build
+          li.included Hosting
+          li.included Domain purchase
+          li.included SEO & Accessibility
+          li.included Analytics set up
+          li.included Ongoing maintenance
+        p.price: em Starting at $x.xx
+        +btn({ icon: {class: 'arrow right', side: 'right'}})(href='/contact?package=Please do it all&type=high', class="mini full-width") Just what I want
+        
+
+      span.option 
+        p.title Just the basics
+        ul(role="list")
+          li.included Design
+          li.included Build
+          li Hosting
+          li Domain purchase
+          li SEO & Accessibility
+          li Analytics set up
+          li Ongoing maintenance
+        p.price: em Starting at $x.xx
+        +btn({ icon: {class: 'arrow right', side: 'right'}})(href='/contact?package=Just the basics&type=low', class="mini full-width secondary") Sign me up!
+        

@@ -40,10 +40,12 @@ if (
 
   $contact_form = new ContactFormController();
   $errors = $contact_form->checkFields([
-    ['name' => 'pot', 'type' => 'empty'],
-    ['name' => 'name', 'type' => 'string'],
-    ['name' => 'email', 'type' => 'email'],
-    ['name' => 'message', 'type' => 'message']
+    ['name' => 'pot', 'type' => 'empty', 'required' => false],
+    ['name' => 'name', 'type' => 'string', 'required' => true],
+    ['name' => 'email', 'type' => 'email', 'required' => true],
+    ['name' => 'message', 'type' => 'string', 'required' => true],
+    ['name' => 'subject', 'type' => 'string', 'required' => false],
+    ['name' => 'package-type', 'type' => 'string', 'required' => false]
   ]);
 
   if ($errors && count($errors) > 0) {

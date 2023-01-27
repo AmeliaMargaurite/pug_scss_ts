@@ -1,0 +1,48 @@
+.home {
+	main {
+		display: grid;
+		row-gap: 3.2rem;
+	}
+	section.second {
+		padding-block: 8rem;
+		text-align: center;
+	}
+
+	section.third {
+		ul {
+			padding-left: 6.4rem;
+		}
+	}
+
+	section.fourth {
+		.list {
+			display: grid;
+			gap: 3.2rem;
+		}
+	}
+
+	section:nth-child(odd):not(.cta-home) {
+		display: grid;
+		padding: 6.4rem;
+		background: hsl(var(--dark), 0.05);
+		border-radius: 1.6rem;
+	}
+
+	@media (min-width: $medium) {
+		section.third {
+			.subtext {
+				max-width: 66%;
+			}
+		}
+
+		section.fourth {
+			.btn {
+				margin-inline: auto;
+			}
+
+			.list {
+				grid-template-columns: auto auto;
+			}
+		}
+	}
+}

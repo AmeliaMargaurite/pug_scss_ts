@@ -1,28 +1,43 @@
 @import "./resets";
 @import "./variables";
+@import "./icons";
 @import "./header";
 @import "./footer";
 @import "./inputs";
-@import "./buttons";
 @import "./gallery";
-@import "../components/contact_form/contact_form";
-@import "../components/checkbox/checkbox";
-@import "../components/google_map/google-map";
 @import "./basics";
+@import "./components";
+@import "./home";
+@import "./contact";
 
 body {
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: max-content auto max-content;
+	background: linear-gradient(
+		45deg,
+		hsl(var(--dark), 0.01),
+		hsl(var(--dark), 0.05)
+	);
+
+	@media (min-width: $medium) {
+		row-gap: 6.4rem;
+	}
 }
 
 main {
+	display: grid;
+	row-gap: 6.4rem;
 	padding: var(--page_padding);
+
+	@media (min-width: $medium) {
+		max-width: $medium;
+		margin-inline: auto;
+	}
 
 	@media (min-width: $large) {
 		width: 100%;
-		max-width: 60vw;
-		margin-inline: auto;
+		max-width: $large;
 	}
 }
 
@@ -36,5 +51,23 @@ main {
 
 	&:focus {
 		transform: translateY(0%);
+	}
+}
+
+p {
+	line-height: 1.8;
+}
+
+ul {
+	line-height: 2;
+}
+
+section {
+	display: grid;
+	row-gap: 1.6rem;
+	padding: 3.2rem;
+
+	&.textCenter {
+		text-align: center;
 	}
 }

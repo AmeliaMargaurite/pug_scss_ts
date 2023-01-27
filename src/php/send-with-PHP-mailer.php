@@ -25,9 +25,11 @@ function setUpMailServer()
 function sendToSiteOwner()
 {
   $mail = setUpMailServer();
+  $form_subject = htmlspecialchars($_POST['subject']);
   $user_name = htmlspecialchars($_POST['name']);
   $user_email = htmlspecialchars($_POST['email']);
   $user_message = htmlspecialchars($_POST['message']);
+  $package_type = htmlspecialchars($_POST['package-type']);
 
   $site_email = $_ENV['SITE_EMAIL'];
 

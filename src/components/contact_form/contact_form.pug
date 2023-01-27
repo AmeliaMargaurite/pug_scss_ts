@@ -1,6 +1,14 @@
+include ../btn/btn.pug
+
 mixin contact_form 
 
   form.contact_form(action="../php/validate-contact-form.php?back=/contact", method="POST") 
+
+    label(for="subject") 
+      p Subject: 
+      input(type="subject", id="subject", name="subject", required, value="I'd like a website")
+      p.warning
+
     label(for="name")
       p Name:
       input(type="text", id="name", name="name", required)
@@ -20,6 +28,9 @@ mixin contact_form
 
     label(for="pot")
       input(type="hidden", name="pot" readonly)
-    button(type="submit", class="btn primary", name="submit", value="submit") Send
+    
+    input(type="hidden", name="package-type", id="package-type")
+    +btn({icon: {class: "paper-plane", side: 'right'}})(type="submit", class="primary", name="submit", onclick="console.log('test')", value="submit") Send
+      
 
     script(src=require("./contact_form.ts")) 

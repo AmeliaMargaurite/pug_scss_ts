@@ -38,15 +38,15 @@ class ContactFormController
   {
     $errors = [];
     $siteOwnerError = sendToSiteOwner();
-    $confirmationError = sendConfirmationToSender();
+    // $confirmationError = sendConfirmationToSender();
 
     if ($siteOwnerError) {
       $errors['failed_submit'] = $siteOwnerError;
     }
 
-    if ($confirmationError) {
-      $errors['failed_confirmation_mail'] = $confirmationError;
-    }
+    // if ($confirmationError) {
+    //   $errors['failed_confirmation_mail'] = $confirmationError;
+    // }
 
     if (count($errors) > 0) {
       return $errors;
@@ -83,7 +83,7 @@ class ContactFormController
         if (!empty($this->$fieldName)) {
           $errors[$field['type']] = $this->$fieldName . ' is not ' . $field['type'];
         }
-      } else {
+      } else if ($field['required'] === true) {
         $errors[$field['type']] = $fieldName . ' not found.';
       }
     }

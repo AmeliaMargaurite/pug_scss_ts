@@ -1,10 +1,13 @@
 extends ../mixins/page_layout.pug
 include ../components/contact_form/contact_form.pug
+include ../components/mock-chat/mock-chat.pug
 
 block variables
   - var title = 'Contact'
 
 block content
-  h1 Contact page! 
-
-  +contact_form
+  section
+    span.contact-form__wrapper
+      h1 Let's connect 
+      +contact_form
+    +mock-chat

@@ -1,11 +1,10 @@
 @import "./menuButton";
 
 header {
-	--text-color: hsl(var(--secondary));
+	--text-color: hsl(var(--primary));
 	display: grid;
 	grid-template-columns: auto auto;
 	padding: 1.6rem var(--page_padding);
-	background: hsl(var(--primary));
 	color: var(--text-color);
 
 	a.logo {

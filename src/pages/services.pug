@@ -1,0 +1,10 @@
+extends ../mixins/page_layout.pug
+include ../mixins/coming-soon.pug
+
+block variables
+  - var title = 'Services'
+
+block content
+  section
+    h1 Services! 
+    +coming-soon

@@ -1,0 +1,57 @@
+.mock-chat__wrapper {
+	display: grid;
+	row-gap: 1.6rem;
+	margin: auto;
+	width: 100%;
+
+	.mock-chat {
+		display: grid;
+		row-gap: 3.2rem;
+		padding: 3.2rem;
+		box-shadow: inset 0 0 10px -6px hsl(var(--dark)),
+			var(--shadow-elevation-high);
+		border: 2rem solid hsl(var(--highlight), 0.1);
+		border-radius: 0.8rem;
+	}
+
+	.chat-bubble {
+		display: grid;
+		justify-self: flex-start;
+		align-items: center;
+		column-gap: 3.2rem;
+		padding: 1.6rem;
+		background: white;
+		box-shadow: var(--shadow-elevation-medium);
+		border-radius: 1.6rem;
+		// max-width: 100%;
+		// width: max-content;
+		grid-auto-flow: column;
+		justify-items: flex-start;
+
+		&.us {
+			justify-self: flex-end;
+
+			& .user {
+				background: hsl(var(--highlight), 0.4);
+			}
+		}
+
+		.user {
+			width: 8rem;
+			height: 8rem;
+			background: hsl(var(--highlight), 0.8);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.emoji {
+		font-size: 3.2rem;
+	}
+
+	@media (min-width: $medium) {
+		padding: 3.2rem;
+	}
+}

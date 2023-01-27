@@ -1,16 +1,23 @@
 include ./page_header.pug
+include ./page_footer.pug
 block variables
 doctype html 
 html 
   head 
-    title= title
+    title= title === 'Home' ? 'AMDesigned' : title + ' | AMDesigned'
     script(src=require("../ts/index.ts")) 
     link(href=require('../scss/main.scss') rel='stylesheet')
+    link(rel="apple-touch-icon" sizes="180x180" href=require("../favicon/apple-touch-icon.png"))
+    link(rel="icon" type="image/png" sizes="512x512" href=require("../favicon/android-chrome-512x512.png"))
+    link(rel="icon" type="image/png" sizes="192x192" href=require("../favicon/android-chrome-192x192.png"))
+    link(rel="icon" type="image/png" sizes="32x32" href=require("../favicon/favicon-32x32.png"))
+    link(rel="icon" type="image/png" sizes="16x16" href=require("../favicon/favicon-16x16.png"))
+    link(rel="manifest" href="../favicon/site.webmanifest")
     block scripts
   body
+    - var pages = {'home': '/', 'contact': '/contact', 'examples': '/examples', 'services': '/services'}
     +page_header(title)
-    main#main 
+    main#main(class=title.toLowerCase())
       block content
   
-    footer
-      p copyright n such
+    +page_footer(title)

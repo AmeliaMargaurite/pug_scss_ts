@@ -1,5 +1,5 @@
 {
-  "name": "pug-n-ts",
+  "name": "amdesigned",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -15,8 +15,10 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@types/google.maps": "^3.51.0",
+    "autoprefixer": "^10.4.13",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
+    "postcss-loader": "^7.0.2",
     "pug-plugin": "^4.8.0",
     "responsive-loader": "^3.1.2",
     "sass": "^1.57.1",

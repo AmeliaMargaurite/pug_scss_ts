@@ -1,0 +1,12 @@
+mixin page_footer(active)
+  footer 
+      ul 
+        
+        each val, key in pages
+          li
+            a(href= val, class= active.toLowerCase() === key ? 'current': undefined) #{key}
+      ul 
+        li 
+          a(href="/terms-and-conditions", class= active.toLowerCase() === 'terms and conditions' ? 'current': undefined) Terms and conditions
+        li 
+          a(href="/privacy-policy", class= active.toLowerCase() === 'privacy policy' ? 'current': undefined) Privacy policy
