@@ -1,46 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contact</title>
-    <script src="/js/runtime.9982dcb90950791c409b.js"> </script><script src="/js/index.4.713f3d3fda152add826b.js"> </script>
-    <link href="/css/main.6b123cdc3472af9750804d76dc837c53.css" rel="stylesheet" />
+    <title>Contact | AMDesigned</title>
+    <script src="/js/runtime.6924b43834953277efd8.js"> </script><script src="/js/index.3.0906cd367f34b1b4a49e.js"> </script>
+    <link href="/css/main.fbad595210f85e38f1c30815760722d4.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.478ba290519eb28e.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.7445bebac609ad72.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.cf989685129b62c1.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.fb29bbf81ec57714.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.f68b7860c31a0afb.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
   </head>
   <body>
     <header> <a class="skip-to-content-link" href="#main">Skip to content</a><a class="logo" href="/">
-        <h1>Company Logo</h1>
+        <h1>AMDesigned</h1>
       </a><button class="menu__button" id="hamburger" onclick="toggleMenu()"
         tabindex="0"><span></span><span></span><span></span></button>
       <nav id="nav">
         <ul>
           <li><a href="/">home</a></li>
-          <li><a href="/about">about</a></li>
           <li><a class="current" href="/contact">contact</a></li>
-          <li><a href="/gallery">gallery</a></li>
-          <li><a href="/components">components</a></li>
+          <li><a href="/examples">examples</a></li>
+          <li><a href="/services">services</a></li>
         </ul>
       </nav>
     </header>
-    <main id="main">
-      <h1>Contact page! </h1>
-      <form class="contact_form" action="../php/validate-contact-form.php?back=/contact" method="POST"> <label
-          for="name">
-          <p>Name:</p><input type="text" id="name" name="name" required>
-          <p class="warning"></p>
-        </label><label for="email">
-          <p>Email: </p><input type="email" id="email" name="email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$" required>
-          <p class="warning"></p>
-        </label><label for="message">
-          <p>Message: </p><textarea name="message" id="message" cols="30" rows="10" required></textarea>
-          <p class="warning"></p>
-        </label><label for="pot"><input type="hidden" name="pot" readonly></label><button class="btn primary"
-          type="submit" name="submit" value="submit">Send</button>
-        <script src="/js/contact_form.11cbbe96efb1566db9c9.js">
-        </script>
-      </form>
+    <main class="contact" id="main">
+      <section><span class="contact-form__wrapper">
+          <h1>Let's connect </h1>
+          <form class="contact_form" action="../php/validate-contact-form.php?back=/contact" method="POST"> <label
+              for="subject">
+              <p>Subject: </p><input type="subject" id="subject" name="subject" required value="I'd like a website">
+              <p class="warning"></p>
+            </label><label for="name">
+              <p>Name:</p><input type="text" id="name" name="name" required>
+              <p class="warning"></p>
+            </label><label for="email">
+              <p>Email: </p><input type="email" id="email" name="email"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$" required>
+              <p class="warning"></p>
+            </label><label for="message">
+              <p>Message: </p><textarea name="message" id="message" cols="30" rows="10" required></textarea>
+              <p class="warning"></p>
+            </label><label for="pot"><input type="hidden" name="pot" readonly></label><input type="hidden"
+              name="package-type" id="package-type"><button class="btn primary" type="submit" name="submit"
+              onclick="console.log('test')" value="submit"> Send<span class="icon paper-plane"></span></button>
+            <script
+              src="/js/contact_form.0067097fedac3e8d80a1.js">
+            </script>
+          </form>
+        </span><span class="mock-chat__wrapper">
+          <h3>It usually goes something like...</h3><span class="mock-chat"> <span class="chat-bubble you">
+              <p class="user">you</p>
+              <p class="chat">Hi, I need a website, can you help?</p>
+            </span><span class="chat-bubble us">
+              <p class="chat">Absolutely! Let's make something amazing</p>
+              <p class="user">us</p>
+            </span><span class="chat-bubble you">
+              <p class="user">you</p>
+              <p class="chat emoji">&#128170;</p>
+            </span></span>
+        </span></section>
     </main>
     <footer>
-      <p>copyright n such</p>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a class="current" href="/contact">contact</a></li>
+        <li><a href="/examples">examples</a></li>
+        <li><a href="/services">services</a></li>
+      </ul>
+      <ul>
+        <li> <a href="/terms-and-conditions">Terms and conditions</a></li>
+        <li> <a href="/privacy-policy">Privacy policy</a></li>
+      </ul>
     </footer>
   </body>
 </html>
