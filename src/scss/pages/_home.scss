@@ -32,7 +32,7 @@
 
 	section:nth-child(odd):not(.cta-home) {
 		display: grid;
-		background: hsl(var(--dark), 0.05);
+		background: hsl(var(--highlight), 0.05);
 		border-radius: 1.6rem;
 	}
 
