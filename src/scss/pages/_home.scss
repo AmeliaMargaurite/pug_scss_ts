@@ -6,7 +6,7 @@
 
 	section {
 		display: grid;
-		padding: 3.2rem;
+		// padding: 3.2rem;
 
 		&.textCenter {
 			text-align: center;
@@ -14,13 +14,12 @@
 	}
 
 	section.second {
-		padding-block: 8rem;
 		text-align: center;
 	}
 
 	section.third {
 		ul {
-			padding-left: 6.4rem;
+			padding-left: 1.6rem;
 		}
 	}
 
@@ -40,6 +39,12 @@
 	@media (min-width: $small) {
 		section:nth-child(odd):not(.cta-home) {
 			padding: 6.4rem;
+		}
+
+		section.third {
+			ul {
+				padding-left: 6.4rem;
+			}
 		}
 	}
 

@@ -15,7 +15,7 @@
 		padding: 3.2rem;
 
 		.cta-heading {
-			font-size: 8rem;
+			font-size: 6.4rem;
 			font-weight: 600;
 			line-height: 1.33;
 
@@ -70,6 +70,12 @@
 
 		.btn {
 			width: max-content;
+		}
+
+		& .wrapper {
+			.cta-heading {
+				font-size: 6.4rem;
+			}
 		}
 	}
 
