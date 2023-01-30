@@ -19,6 +19,7 @@ header {
 }
 
 nav {
+	--mobile-text-color: hsl(var(--secondary));
 	// display: grid;
 	// justify-items: flex-end;
 	// align-items: center;
@@ -30,6 +31,7 @@ nav {
 		align-items: center;
 		height: 100%;
 		justify-content: space-around;
+		padding: 0;
 
 		& li {
 			list-style: none;
@@ -40,7 +42,7 @@ nav {
 				text-transform: uppercase;
 				font-weight: 600;
 				text-decoration: none;
-				color: var(--text-color);
+				color: var(--mobile-text-color);
 
 				&:after {
 					position: absolute;

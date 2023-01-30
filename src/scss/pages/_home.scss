@@ -33,9 +33,14 @@
 
 	section:nth-child(odd):not(.cta-home) {
 		display: grid;
-		padding: 6.4rem;
 		background: hsl(var(--dark), 0.05);
 		border-radius: 1.6rem;
+	}
+
+	@media (min-width: $small) {
+		section:nth-child(odd):not(.cta-home) {
+			padding: 6.4rem;
+		}
 	}
 
 	@media (min-width: $medium) {
