@@ -22,6 +22,10 @@ body {
 		hsl(var(--dark), 0.05)
 	);
 
+	@media (min-width: $wholeMenuMinWidth) {
+		overflow-y: auto !important;
+	}
+
 	@media (min-width: $medium) {
 		row-gap: 6.4rem;
 	}

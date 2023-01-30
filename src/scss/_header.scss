@@ -65,6 +65,7 @@ nav {
 			}
 		}
 	}
+
 	&.open {
 		position: fixed;
 		top: 0;
@@ -86,6 +87,8 @@ nav {
 		&,
 		&.open {
 			position: relative;
+			background: unset;
+			padding: initial;
 
 			ul {
 				display: flex;
