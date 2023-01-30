@@ -85,7 +85,8 @@ nav {
 		&,
 		&.open {
 			position: relative;
-
+			background: unset;
+			padding: initial;
 			ul {
 				display: flex;
 				flex-direction: row;

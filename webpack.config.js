@@ -62,6 +62,10 @@ module.exports = {
 					from: path.join(__dirname, "src/php"),
 					to: path.join(__dirname, "dist/php"),
 				},
+				{
+					from: path.join(__dirname, "src/favicon"),
+					to: path.join(__dirname, "dist/favicon"),
+				},
 			],
 		}),
 	],

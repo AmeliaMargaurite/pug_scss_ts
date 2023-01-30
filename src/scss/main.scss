@@ -14,6 +14,10 @@ body {
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: max-content auto max-content;
+
+	@media (min-width: $wholeMenuMinWidth) {
+		overflow-y: auto !important;
+	}
 }
 
 main {

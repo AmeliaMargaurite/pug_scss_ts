@@ -1,4 +1,5 @@
 .menu__button {
+	position: relative;
 	display: grid;
 	justify-self: flex-end;
 	align-self: center;
@@ -22,6 +23,8 @@
 	}
 
 	&.open {
+		position: fixed;
+
 		span {
 			transition: transform 0.25s ease, background-color 0.5s ease;
 			// background: var(--mix-colors-yellow);
@@ -41,5 +44,9 @@
 
 	@media (min-width: $small) {
 		display: none;
+
+		&.open {
+			position: relative;
+		}
 	}
 }

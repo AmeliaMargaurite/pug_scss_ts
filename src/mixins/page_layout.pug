@@ -1,11 +1,25 @@
 include ./page_header.pug
 block variables
 doctype html 
-html 
+
+html(lang="en")
   head 
+    meta(charset="UTF-8") 
+    meta(http-equiv="X-UA-Compatible", content="IE=edge" )
+    meta(name="viewport", content="width=device-width, initial-scale=1.0" )
     title= title
     script(src=require("../ts/index.ts")) 
     link(href=require('../scss/main.scss') rel='stylesheet')
+
+    //- Favicons
+    link(rel="apple-touch-icon" sizes="180x180" href=require("../favicon/apple-touch-icon.png"))
+    link(rel="icon" type="image/png" sizes="512x512" href=require("../favicon/android-chrome-512x512.png"))
+    link(rel="icon" type="image/png" sizes="192x192" href=require("../favicon/android-chrome-192x192.png"))
+    link(rel="icon" type="image/png" sizes="32x32" href=require("../favicon/favicon-32x32.png"))
+    link(rel="icon" type="image/png" sizes="16x16" href=require("../favicon/favicon-16x16.png"))
+    link(rel="manifest" href="../favicon/site.webmanifest")
+    //- End Favicons
+
     block scripts
   body
     +page_header(title)

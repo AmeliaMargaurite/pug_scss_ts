@@ -13,6 +13,7 @@ const closeMenuOnEsc = (event: KeyboardEvent) => {
 
 		hamburger?.classList.remove("open");
 		nav?.classList.remove("open");
+		document.body.style.overflowY = "auto";
 
 		window.removeEventListener("keydown", closeMenuOnEsc);
 	}
@@ -28,8 +29,10 @@ const toggleMenu = () => {
 	const isOpen = nav?.classList.contains("open");
 
 	if (isOpen) {
+		document.body.style.overflowY = "hidden";
 		window.addEventListener("keydown", closeMenuOnEsc);
 	} else {
+		document.body.style.overflowY = "auto";
 		window.removeEventListener("keydown", closeMenuOnEsc);
 	}
 };
