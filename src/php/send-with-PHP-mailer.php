@@ -10,13 +10,15 @@ function setUpMailServer()
 // true enables exceptions
   $mail = new PHPMailer(true);
   // $mail->SMTPDebug = 3;
-  $mail->isSMTP();
-  $mail->Host = $_ENV['MAIL_HOST'];
-  $mail->SMTPAuth = true;
-  $mail->Username = $_ENV['MAIL_USERNAME'];
-  $mail->Password = $_ENV['MAIL_PASSWORD'];
-  $mail->SMTPSecure = 'ssl';
-  $mail->Port = $_ENV['MAIL_PORT'];
+  if (!IS_LIVE) {
+    $mail->isSMTP();
+    $mail->Host = $_ENV['MAIL_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->Username = $_ENV['MAIL_USERNAME'];
+    $mail->Password = $_ENV['MAIL_PASSWORD'];
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = $_ENV['MAIL_PORT'];
+  }
   $mail->From = $_ENV['SITE_EMAIL'];
   $mail->FromName = $_ENV['SITE_NAME'];
   return $mail;
@@ -72,7 +74,9 @@ function sendToSiteOwner()
   try {
     $mail->send();
   } catch (Exception $e) {
-    return $e;
+    error_log("Error: " . $e->getMessage());
+
+    return $e->getMessage();
   }
 
 }
