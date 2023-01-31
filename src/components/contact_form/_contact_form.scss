@@ -1,6 +1,13 @@
+input.warning {
+	border-color: hsl(var(--warning));
+}
 p.warning {
 	display: none;
 	color: hsl(var(--warning), 0.8);
+	text-transform: uppercase;
+	line-height: 1;
+	font-size: 0.8em;
+	margin-top: -0.5em;
 
 	&.active {
 		display: inline;

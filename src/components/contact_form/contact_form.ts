@@ -23,6 +23,7 @@ if (websitePackage) {
 for (const [key, value] of params.entries()) {
 	const el = document.querySelector(`#${key}`);
 	if (el) {
+		el.classList.add("warning");
 		const p = document.querySelector(`#${key} ~ p.warning`);
 		if (p) {
 			p.innerHTML = value;
@@ -30,3 +31,15 @@ for (const [key, value] of params.entries()) {
 		}
 	}
 }
+
+// Manually add input patters
+const patterns = {
+	string: "[A-Za-zÀ-ÖØ-öø-ÿ\\-\\_]",
+	email: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+};
+
+const stringInputs = document.querySelectorAll("input[pattern=string]");
+stringInputs.forEach((input) => input.setAttribute("pattern", patterns.string));
+
+const emailInputs = document.querySelectorAll("input[pattern=email]");
+emailInputs.forEach((input) => input.setAttribute("pattern", patterns.email));

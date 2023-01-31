@@ -11,9 +11,6 @@ class ContactFormController
 {
   public function __construct()
   {
-    // save all post props?
-    // save specific props only?
-
     // check if pot is used, if so fail
     // check inputs are not empty
     // check email is email format
@@ -65,26 +62,26 @@ class ContactFormController
 
         // Check if type string
         if ($field['type'] === 'string') {
-          $error = $this->validateString($this->$fieldName);
+          $error = $this->validateString($this->$fieldName, $fieldName);
           if ($error) {
-            $errors[$field['type']] = $error;
+            $errors[$fieldName] = $error;
           }
         }
 
         // Check if type email
         if ($field['type'] === 'email') {
-          $error = $this->validateEmail($this->$fieldName);
+          $error = $this->validateEmail($this->$fieldName, $fieldName);
           if ($error) {
-            $errors[$field['type']] = $error;
+            $errors[$fieldName] = $error;
           }
         }
         // Check honey pot
       } else if ($field['type'] === 'empty') {
         if (!empty($this->$fieldName)) {
-          $errors[$field['type']] = $this->$fieldName . ' is not ' . $field['type'];
+          $errors[$fieldName] = $fieldName . ' is not ' . $field['type'];
         }
       } else if ($field['required'] === true) {
-        $errors[$field['type']] = $fieldName . ' not found.';
+        $errors[$fieldName] = $fieldName . ' not found.';
       }
     }
     if (count($errors) > 0) {
@@ -93,14 +90,15 @@ class ContactFormController
 
   }
 
-  private function validateString($input)
+  private function validateString($input, $fieldName)
   {
-    if (!is_string($input)) {
-      return "{$input} failed validation, is not of type string";
+    $pattern = "/[\[\]\=\<\>`]/m";
+    if (!is_string($input) || preg_match_all($pattern, $input)) {
+      return "{$fieldName} failed validation";
     }
   }
 
-  private function validateEmail($input)
+  private function validateEmail($input, $fieldName)
   {
     // ensure this only contains one email address
     $email = explode(',', $input);
@@ -109,7 +107,7 @@ class ContactFormController
     }
 
     if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
-      return "{$input} failed email validation";
+      return "{$fieldName} failed email validation";
     }
   }
 
