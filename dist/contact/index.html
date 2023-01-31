@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | AMDesigned</title>
-    <script src="/js/runtime.6924b43834953277efd8.js"> </script><script src="/js/index.2.a4b269b90ebbdf5bcc53.js"> </script>
-    <link href="/css/main.6f3434868fda37924e4735ab9bb7e6ac.css" rel="stylesheet" />
+    <script src="/js/runtime.6924b43834953277efd8.js"> </script><script src="/js/index.1.3b25f29432f15ed3d5f4.js"> </script>
+    <link href="/css/main.a22c1cb2f4e3dc64172470f7f276cdfb.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.478ba290519eb28e.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.7445bebac609ad72.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.cf989685129b62c1.png" />
@@ -60,24 +60,26 @@
           <h1>Let's connect </h1>
           <form class="contact_form" action="../php/validate-contact-form.php?back=/contact" method="POST"> <label
               for="subject">
-              <p>Subject: </p><input type="subject" id="subject" name="subject" required value="I'd like a website">
+              <p>Subject: </p><input type="subject" id="subject" name="subject" required pattern="string"
+                value="I'd like a website" title="Alphanumeric with accents allowed">
               <p class="warning"></p>
             </label><label for="name">
-              <p>Name:</p><input type="text" id="name" name="name" required>
+              <p>Name:</p><input type="text" id="name" name="name" required pattern="string"
+                title="Alphanumeric with accents allowed">
               <p class="warning"></p>
             </label><label for="email">
-              <p>Email: </p><input type="email" id="email" name="email"
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$" required>
+              <p>Email: </p><input type="email" id="email" name="email" pattern="email" required>
               <p class="warning"></p>
             </label><label for="message">
-              <p>Message: </p><textarea name="message" id="message" cols="30" rows="10" required></textarea>
+              <p>Message: </p><textarea name="message" id="message" cols="30" rows="10" required
+                title="Not allowed: equals sign, greater than or less than signs, curly or square brackets"></textarea>
               <p class="warning"></p>
             </label><label for="pot" aria-hidden="true"><input type="hidden" name="pot" readonly></label><input
               type="hidden" name="package-type" id="package-type"><button class="btn primary" type="submit"
               name="submit" onclick="console.log('test')" value="submit"> Send<span
                 class="icon paper-plane"></span></button>
             <script
-              src="/js/contact_form.0067097fedac3e8d80a1.js">
+              src="/js/contact_form.c7c52f24484d06f05aee.js">
             </script>
           </form>
         </span><span class="mock-chat__wrapper">
