@@ -1,3 +1,17 @@
+const packageTypes = {
+	low: ["design", "build"],
+	mid: ["design", "build", "seo-accessibility", "analytics"],
+	high: [
+		"design",
+		"build",
+		"hosting",
+		"domain-purchase",
+		"seo-accessibility",
+		"analytics",
+		"maintenance",
+	],
+};
+
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 
@@ -12,11 +26,30 @@ if (websitePackage) {
 	}
 
 	// Check if type param has come through too
-	const packageType = params.get("type");
+	const packageType: string | null = params.get("type");
 	const hiddenTypeInput: HTMLInputElement | null =
 		document.querySelector("input#package-type");
-	if (hiddenTypeInput && packageType) {
-		hiddenTypeInput.value = packageType;
+	if (
+		packageType === "low" ||
+		packageType === "mid" ||
+		packageType === "high"
+	) {
+		if (hiddenTypeInput) {
+			hiddenTypeInput.value = packageType;
+
+			// check checkboxes associated with type
+			const services = packageTypes[packageType];
+			services.forEach((service) => {
+				console.log(service);
+				const checkbox: HTMLInputElement | null = document.querySelector(
+					`input[type=checkbox]#${service}`
+				);
+				console.log(checkbox);
+				if (checkbox) {
+					checkbox.checked = true;
+				}
+			});
+		}
 	}
 }
 
@@ -32,9 +65,9 @@ for (const [key, value] of params.entries()) {
 	}
 }
 
-// Manually add input patters
+// Manually add input patterns
 const patterns = {
-	string: "[A-Za-zÀ-ÖØ-öø-ÿ\\-\\_]",
+	string: ".[-_'A-Za-zÀ-ÖØ-öø-ÿ\\s]+",
 	email: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
 };
 
@@ -43,3 +76,33 @@ stringInputs.forEach((input) => input.setAttribute("pattern", patterns.string));
 
 const emailInputs = document.querySelectorAll("input[pattern=email]");
 emailInputs.forEach((input) => input.setAttribute("pattern", patterns.email));
+
+// validate checkboxes manually
+// require at least one to be checked
+// all checkboxes are originally set to required
+
+export {};
+declare global {
+	interface Window {
+		validateCheckboxes: () => boolean;
+	}
+}
+
+const validateCheckboxes = () => {
+	const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+		"input[name^=services]"
+	);
+	const checkboxesArray = Array.from(checkboxes);
+
+	const notCheckedBoxes = checkboxesArray.filter((box) => !box.checked);
+
+	if (notCheckedBoxes.length === checkboxesArray.length) {
+		notCheckedBoxes.forEach((box) => (box.required = true));
+		return false;
+	} else {
+		notCheckedBoxes.forEach((box) => (box.required = false));
+		return true;
+	}
+};
+
+window.validateCheckboxes = validateCheckboxes;

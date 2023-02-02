@@ -17,6 +17,19 @@ const alterPugFolderStructure = (pathData) => {
 	if (name === "index") {
 		return `${name}.html`;
 	}
+
+	const phpFile = name.split(".php");
+
+	if (phpFile.length > 1) {
+		if (phpFile[0] === "index") {
+			return `${phpFile[0]}.php`;
+		} else {
+			return nestedDir
+				? `${nestedDir}/${phpFile[0]}/index.php`
+				: `${phpFile[0]}/index.php`;
+		}
+	}
+
 	return nestedDir ? `${nestedDir}/${name}/index.html` : `${name}/index.html`;
 };
 
@@ -25,7 +38,7 @@ module.exports = {
 	entry: {
 		index: "./src/pages/index.pug",
 		notFound404: "./src/pages/notFound404.pug",
-		contact: "./src/pages/contact.pug",
+		contact: "./src/pages/contact.php.pug",
 		confirmation: "./src/pages/confirmation.pug",
 		examples: "./src/pages/examples.pug",
 		services: "./src/pages/services.pug",

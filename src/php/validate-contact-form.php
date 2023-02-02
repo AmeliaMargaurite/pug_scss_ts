@@ -38,6 +38,15 @@ if (
   && !empty($_POST['submit'])
 ) {
 
+  // Check for correct token
+  if (!empty($_POST['token'])) {
+    if (!hash_equals($_SESSION['token'], $_POST['token'])) {
+      exitWithFailure(['contact-form' => '001-a: Form submitted incorrectly']);
+    }
+  } else {
+    exitWithFailure(['contact-form' => '001-b: Form submitted incorrectly']);
+  }
+
   $contact_form = new ContactFormController();
   $errors = $contact_form->checkFields([
     ['name' => 'pot', 'type' => 'empty', 'required' => false],
@@ -45,9 +54,10 @@ if (
     ['name' => 'email', 'type' => 'email', 'required' => true],
     ['name' => 'message', 'type' => 'string', 'required' => true],
     ['name' => 'subject', 'type' => 'string', 'required' => false],
-    ['name' => 'package-type', 'type' => 'string', 'required' => false]
+    ['name' => 'package-type', 'type' => 'string', 'required' => false],
+    ['name' => 'services', 'type' => 'string_array', 'required' => true]
   ]);
-
+  // dd($_POST['services']);
   if ($errors && count($errors) > 0) {
     exitWithFailure($errors);
   } else {
@@ -62,5 +72,6 @@ if (
     }
   }
 } else {
-  exitWithFailure(['Form submitted incorrectly']);
+  // use id of form as key to allow error warnings to appear
+  exitWithFailure(['contact-form' => '002: Form submitted incorrectly']);
 }
