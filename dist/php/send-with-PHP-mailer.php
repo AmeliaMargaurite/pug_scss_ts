@@ -32,6 +32,7 @@ function sendToSiteOwner()
   $user_email = htmlspecialchars($_POST['email']);
   $user_message = htmlspecialchars($_POST['message']);
   $package_type = htmlspecialchars($_POST['package-type']);
+  $services_array = $_POST['services'];
 
   $site_email = $_ENV['SITE_EMAIL'];
 
@@ -60,6 +61,18 @@ function sendToSiteOwner()
           <em>
             $user_message
           </em>
+        </p>
+        <p>
+          They selected the following services:
+        </p>
+        <p>
+        ";
+
+  foreach ($services_array as $service) {
+    $message .= "<p> $service </p>";
+  }
+
+  $message .= "
         </p>
       </body>
     </html>

@@ -20,8 +20,11 @@ class ContactFormController
     foreach ($_POST as $key => $val) {
       if (isset($_POST[$key]) && !empty($_POST[$key])) {
         $this->$key = $val;
+        $_SESSION['contact_form'][$key] = $val;
+
       } else {
         $this->$key = null;
+        $_SESSION['contact_form'][$key] = null;
       }
     }
   }
@@ -64,6 +67,15 @@ class ContactFormController
         if ($field['type'] === 'string') {
           $error = $this->validateString($this->$fieldName, $fieldName);
           if ($error) {
+            // use fieldName (which is also the input id) as key to allow 
+            // error warnings to appear
+            $errors[$fieldName] = $error;
+          }
+        }
+
+        if ($field['type'] === 'string_array') {
+          $error = $this->validateStringArray($this->$fieldName, $fieldName);
+          if ($error) {
             $errors[$fieldName] = $error;
           }
         }
@@ -72,15 +84,21 @@ class ContactFormController
         if ($field['type'] === 'email') {
           $error = $this->validateEmail($this->$fieldName, $fieldName);
           if ($error) {
+            // use fieldName (which is also the input id) as key to allow 
+            // error warnings to appear
             $errors[$fieldName] = $error;
           }
         }
         // Check honey pot
       } else if ($field['type'] === 'empty') {
         if (!empty($this->$fieldName)) {
+          // use fieldName (which is also the input id) as key to allow 
+          // error warnings to appear
           $errors[$fieldName] = $fieldName . ' is not ' . $field['type'];
         }
       } else if ($field['required'] === true) {
+        // use fieldName (which is also the input id) as key to allow 
+        // error warnings to appear
         $errors[$fieldName] = $fieldName . ' not found.';
       }
     }
@@ -95,6 +113,18 @@ class ContactFormController
     $pattern = "/[\[\]\=\<\>`]/m";
     if (!is_string($input) || preg_match_all($pattern, $input)) {
       return "{$fieldName} failed validation";
+    }
+  }
+
+  private function validateStringArray($array, $fieldName)
+  {
+    foreach ($array as $key => $val) {
+      if ($key === $val) {
+        $error = $this->validateString($val, $fieldName);
+        if ($error) {
+          return $error;
+        }
+      }
     }
   }
 
