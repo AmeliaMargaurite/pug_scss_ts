@@ -1,5 +1,43 @@
 footer {
+	--text-color: hsl(var(--primary));
+
+	display: flex;
+	justify-content: space-between;
 	padding: var(--page_padding);
-	background: hsl(var(--primary));
-	color: hsl(var(--secondary));
+	color: hsl(var(--text-color));
+
+	ul {
+		padding: 0;
+		li {
+			list-style: none;
+
+			a {
+				position: relative;
+				font-size: 1.4rem;
+				text-transform: uppercase;
+				font-weight: 600;
+				text-decoration: none;
+				color: var(--text-color);
+
+				&:after {
+					position: absolute;
+					content: "";
+					height: 0.1em;
+					width: 100%;
+					left: 0;
+					bottom: 0;
+				}
+
+				&.current:after {
+					background: hsl(var(--highlight));
+				}
+
+				&:not(.active):hover {
+					&:after {
+						background: hsl(var(--secondary));
+					}
+				}
+			}
+		}
+	}
 }

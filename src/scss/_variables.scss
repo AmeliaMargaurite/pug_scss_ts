@@ -7,7 +7,8 @@
 	--warning: 0, 100%, 50%;
 
 	// COLOURS
-
+	--green: 120, 100%, 43%;
+	--red: 8, 100%, 60%;
 	// Z INDEXES
 	--below-menu-zIndex: 3;
 	--menu-zIndex: 5;
@@ -18,7 +19,7 @@
 	--input_padding: 0.8rem;
 
 	// BORDERS
-	--input_border: 1px solid hsl(var(--primary));
+	--input_border: 1px solid hsl(var(--primary), 0.2);
 	--input_border_radius: 0.4rem;
 
 	// SHADOWS
@@ -41,6 +42,7 @@
 $xxsmall: 425px;
 $xsmall: 501px;
 $small: 768px;
+$smedium: 900px;
 $medium: 1024px;
 $large: 1440px;
 $xlarge: 2560px;

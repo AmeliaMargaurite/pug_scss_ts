@@ -1,8 +1,10 @@
 const PugPlugin = require("pug-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const autoprefixer = require("autoprefixer");
+const mjml2html = require("mjml");
 
+const autoprefixer = require("autoprefixer");
 const path = require("path");
+const webpack = require("webpack");
 
 const sourcePath = path.join(__dirname, "src");
 
@@ -37,11 +39,13 @@ module.exports = {
 	mode: "development",
 	entry: {
 		index: "./src/pages/index.pug",
-		about: "./src/pages/about.pug",
+		notFound404: "./src/pages/notFound404.pug",
 		contact: "./src/pages/contact.php.pug",
 		confirmation: "./src/pages/confirmation.pug",
-		gallery: "./src/pages/gallery.pug",
-		components: "./src/pages/components.pug",
+		examples: "./src/pages/examples.pug",
+		services: "./src/pages/services.pug",
+		termsConditions: "./src/pages/terms-and-conditions.pug",
+		privacyPolicy: "./src/pages/privacy-policy.pug",
 	},
 	output: {
 		path: path.join(__dirname, "dist/"),
@@ -81,6 +85,15 @@ module.exports = {
 					from: path.join(__dirname, "src/favicon"),
 					to: path.join(__dirname, "dist/favicon"),
 				},
+				{
+					from: "src/mjml/*.mjml",
+					to: "mjml/[name].php",
+					transform: {
+						transformer(content, absoluteFrom) {
+							return mjml2html(content.toString()).html;
+						},
+					},
+				},
 			],
 		}),
 		new webpack.LoaderOptionsPlugin({
@@ -101,6 +114,7 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/i,
+				exclude: /node_modules/,
 				use: [
 					// translates css into commonjs
 					"css-loader",

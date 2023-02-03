@@ -1,1 +1,3 @@
+ErrorDocument 404 /notFound404
+
 SetEnv ENVIRONMENT development

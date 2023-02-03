@@ -1,8 +1,62 @@
-p.warning {
-	display: none;
-	color: hsl(var(--warning), 0.8);
+.contact-form {
+	& *:not(input[type="checkbox"]):focus {
+		outline: 0.2rem solid hsl(var(--highlight));
+		outline-offset: 0.4rem;
+	}
 
-	&.active {
-		display: inline;
+	label:has(input[type="checkbox"]:focus) {
+		outline: 0.2rem solid hsl(var(--highlight));
+		outline-offset: 0.2rem;
+		border-radius: var(--input_border_radius);
+	}
+
+	input.warning {
+		border-color: hsl(var(--warning));
+	}
+	p.warning {
+		display: none;
+		color: hsl(var(--warning), 0.8);
+		text-transform: uppercase;
+		line-height: 1;
+		font-size: 0.8em;
+		margin-top: -0.5em;
+		grid-column: 1/-1;
+
+		&.active {
+			display: inline;
+		}
+	}
+
+	fieldset {
+		display: grid;
+		padding: 1.6rem;
+		column-gap: 3.2rem;
+
+		legend {
+			padding: 0 1.6rem;
+		}
+
+		label {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 0.8rem;
+
+			&:hover {
+				background: hsl(var(--highlight), 0.2);
+			}
+
+			& input {
+				width: 2.4rem;
+				height: 2.4rem;
+			}
+		}
+	}
+
+	@media (min-width: $small) {
+		fieldset {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 }

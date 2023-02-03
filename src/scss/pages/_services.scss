@@ -1,0 +1,26 @@
+.services__wrapper {
+	display: grid;
+	// grid-template-columns: repeat(3, 1fr);
+	gap: 3.2rem;
+
+	& .service {
+		display: flex;
+		column-gap: 3.2rem;
+		align-items: center;
+		padding: 3.2rem;
+
+		&:nth-child(odd) {
+			background: hsl(var(--dark), 0.025);
+		}
+
+		& .title__wrapper {
+			display: grid;
+			justify-items: center;
+		}
+
+		&.highlight {
+			outline: 2px solid hsl(var(--highlight), 0.5);
+			border-radius: 0.4rem;
+		}
+	}
+}

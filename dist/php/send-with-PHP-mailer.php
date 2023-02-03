@@ -10,13 +10,15 @@ function setUpMailServer()
 // true enables exceptions
   $mail = new PHPMailer(true);
   // $mail->SMTPDebug = 3;
-  $mail->isSMTP();
-  $mail->Host = $_ENV['MAIL_HOST'];
-  $mail->SMTPAuth = true;
-  $mail->Username = $_ENV['MAIL_USERNAME'];
-  $mail->Password = $_ENV['MAIL_PASSWORD'];
-  $mail->SMTPSecure = 'ssl';
-  $mail->Port = $_ENV['MAIL_PORT'];
+  if (!IS_LIVE) {
+    $mail->isSMTP();
+    $mail->Host = $_ENV['MAIL_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->Username = $_ENV['MAIL_USERNAME'];
+    $mail->Password = $_ENV['MAIL_PASSWORD'];
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = $_ENV['MAIL_PORT'];
+  }
   $mail->From = $_ENV['SITE_EMAIL'];
   $mail->FromName = $_ENV['SITE_NAME'];
   return $mail;
@@ -25,9 +27,12 @@ function setUpMailServer()
 function sendToSiteOwner()
 {
   $mail = setUpMailServer();
+  $form_subject = htmlspecialchars($_POST['subject']);
   $user_name = htmlspecialchars($_POST['name']);
   $user_email = htmlspecialchars($_POST['email']);
   $user_message = htmlspecialchars($_POST['message']);
+  $package_type = htmlspecialchars($_POST['package-type']);
+  $services_array = $_POST['services'];
 
   $site_email = $_ENV['SITE_EMAIL'];
 
@@ -57,6 +62,18 @@ function sendToSiteOwner()
             $user_message
           </em>
         </p>
+        <p>
+          They selected the following services:
+        </p>
+        <p>
+        ";
+
+  foreach ($services_array as $service) {
+    $message .= "<p> $service </p>";
+  }
+
+  $message .= "
+        </p>
       </body>
     </html>
   ";
@@ -70,7 +87,9 @@ function sendToSiteOwner()
   try {
     $mail->send();
   } catch (Exception $e) {
-    return $e;
+    error_log("Error: " . $e->getMessage());
+
+    return $e->getMessage();
   }
 
 }

@@ -1,0 +1,103 @@
+.build-options {
+	display: grid;
+	row-gap: 1.6rem;
+
+	.options__wrapper {
+		gap: 3.2rem;
+		display: grid;
+		align-items: flex-end;
+		margin-top: 3.2rem; // To allow for hero::before height
+
+		.option {
+			display: grid;
+			row-gap: 3.2rem;
+			// background: hsl(var(--dark));
+			color: hsl(var(--dark));
+			padding: 3.2rem;
+			border-radius: 0.8rem;
+			box-shadow: var(--shadow-elevation-medium);
+
+			.title {
+				text-align: center;
+				font-size: 1.8rem;
+				font-weight: 600;
+				text-decoration: underline;
+			}
+
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				column-gap: 3.2rem;
+				padding: 0;
+				margin-left: 1.6rem;
+
+				li {
+					padding-left: 0.8rem;
+					a {
+						color: inherit;
+					}
+					&::marker {
+						font-weight: 600;
+					}
+
+					&:not(.included)::marker {
+						content: "\00D7";
+						color: hsl(var(--red));
+					}
+
+					&.included::marker {
+						content: "\2713";
+						color: hsl(var(--green));
+					}
+				}
+			}
+
+			&.hero {
+				background: hsl(var(--light), 0.8);
+				color: hsl(var(--dark));
+				position: relative;
+				border: 2px solid hsl(var(--highlight));
+				margin-top: 4rem;
+				box-shadow: var(--shadow-elevation-high);
+				border-top-right-radius: 0;
+				border-top-left-radius: 0;
+
+				& .title {
+					font-size: 2rem;
+				}
+
+				&::before {
+					position: absolute;
+					content: "Most Popular";
+					bottom: 100%;
+					text-align: center;
+					width: calc(100% + 4px);
+					left: -2px;
+					background: hsl(var(--highlight));
+					color: hsl(var(--light));
+					border-top-right-radius: 0.8rem;
+					border-top-left-radius: 0.8rem;
+					border: 2px solid hsl(var(--highlight));
+					font-size: 2.4rem;
+				}
+			}
+		}
+	}
+
+	@media (min-width: $smedium) {
+		.options__wrapper {
+			grid-template-columns: repeat(3, 1fr);
+			margin: auto;
+			column-gap: 3.2rem;
+
+			.option {
+				// border-top-right-radius: 0.8rem;
+				// border-top-left-radius: 0.8rem;
+				ul {
+					display: grid;
+					row-gap: 0.8rem;
+				}
+			}
+		}
+	}
+}

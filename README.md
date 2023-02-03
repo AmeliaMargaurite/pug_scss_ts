@@ -9,3 +9,6 @@ For PHP stuffs, run PHP Server then go to localhost:3000
 
 Run npm install
 Run composer install
+If don't need to run php, use npm run start
+
+Need to add .env file for PHPMailer, 

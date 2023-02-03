@@ -1,6 +1,6 @@
 <?php
 $local = '/pug-test'; // localhost 
-
+session_start();
 define('IS_LIVE', getenv("ENVIRONMENT") === 'production');
 define('HOME_PATH', IS_LIVE ? '' : $local); // Used in url paths
 define('HOME_URL', IS_LIVE ? '/' : $local); // Used for a direct link to home only
