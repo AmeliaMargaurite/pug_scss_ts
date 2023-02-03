@@ -1,0 +1,23 @@
+.image-w-placeholder {
+	display: grid;
+	overflow: hidden;
+
+	.placeholder-image,
+	picture {
+		grid-row: 1;
+		grid-column: 1;
+	}
+
+	.placeholder-image {
+		position: relative;
+		z-index: -1;
+		object-fit: cover;
+		filter: blur(2px);
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+}
