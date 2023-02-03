@@ -49,37 +49,22 @@ function sendToSiteOwner()
   $subject = 'A message from ' . $_ENV['SITE_NAME'];
   $mail->Subject = $subject;
 
-  $message = "
-    <html>
-      <head>
-        <title>$subject</title>
-      </head>
+  $template = file_get_contents('../mjml/example-email.php');
 
-      <body>
-        <p>The following message was submitted from $user_name.</p>
-        <p>
-          <em>
-            $user_message
-          </em>
-        </p>
-        <p>
-          They selected the following services:
-        </p>
-        <p>
-        ";
+  $variables = [
+    'title' => 'Email title',
+    'preview' => 'Preview text of email',
+    'example_text' => 'Hi, this is a test email'
+  ];
 
-  foreach ($services_array as $service) {
-    $message .= "<p> $service </p>";
+
+  foreach ($variables as $key => $value) {
+    $template = str_replace('{{ ' . $key . ' }}', $value, $template);
   }
 
-  $message .= "
-        </p>
-      </body>
-    </html>
-  ";
 
   // Body message
-  $mail->Body = $message;
+  $mail->Body = $template;
 
   // Plain Text Version of message
   $mail->AltBody = 'The following message was submitted from ' . $user_name . ': ' . $user_message;
@@ -94,63 +79,64 @@ function sendToSiteOwner()
 
 }
 
-function sendConfirmationToSender()
-{
+// function sendConfirmationToSender()
+// {
 
-  $mail = setUpMailServer();
+//   $mail = setUpMailServer();
 
-  $errors = [];
+//   $errors = [];
 
-  $user_name = htmlspecialchars($_POST['name']);
-  $user_email = htmlspecialchars($_POST['email']);
-  $user_message = htmlspecialchars($_POST['message']);
+//   $user_name = htmlspecialchars($_POST['name']);
+//   $user_email = htmlspecialchars($_POST['email']);
+//   $user_message = htmlspecialchars($_POST['message']);
 
-  $site_email = $_ENV['SITE_EMAIL'];
-  $site_from = 'Site Contact Form';
-  $site_name = $_ENV['SITE_NAME'];
+//   $site_email = $_ENV['SITE_EMAIL'];
+//   $site_from = 'Site Contact Form';
+//   $site_name = $_ENV['SITE_NAME'];
 
-  // To address and name
-  $mail->addAddress($user_email, $user_name);
+//   // To address and name
+//   $mail->addAddress($user_email, $user_name);
 
-  // Replies go to this address and name
-  $mail->addReplyTo($site_email, $site_name);
+//   // Replies go to this address and name
+//   $mail->addReplyTo($site_email, $site_name);
 
-  // Send as HTML (as opposed to Plain Text)
-  $mail->isHTML(true);
+//   // Send as HTML (as opposed to Plain Text)
+//   $mail->isHTML(true);
 
-  // 
-  $subject = "Confirmation of form submitted on $site_name.";
-  $mail->Subject = $subject;
+//   // 
+//   $subject = "Confirmation of form submitted on $site_name.";
+//   $mail->Subject = $subject;
 
-  $message = "
-    <html>
-      <head>
-        <title>$subject</title>
-      </head>
 
-      <body>
-        <p>Hi $user_name, 
-        <p>Thank you for submitting the following message on our website:</p>
-        <p>
-          <em>
-            $user_message
-          </em>
-        </p>
-        <p>We will get back to you with a reply within 1-3 business days</p>
-      </body>
-    </html>
-  ";
+//   $message = "
+//     <html>
+//       <head>
+//         <title>$subject</title>
+//       </head>
 
-  // Body message
-  $mail->Body = $message;
+//       <body>
+//         <p>Hi $user_name, 
+//         <p>Thank you for submitting the following message on our website:</p>
+//         <p>
+//           <em>
+//             $user_message
+//           </em>
+//         </p>
+//         <p>We will get back to you with a reply within 1-3 business days</p>
+//       </body>
+//     </html>
+//   ";
 
-  // Plain Text Version of message
-  $mail->AltBody = "Hi $user_name, thank you for submitting the following message on our website: $user_message. We will get back to you with a reply within 1-3 business days.";
+//   // Body message
+//   $mail->Body = $message;
 
-  try {
-    $mail->send();
-  } catch (Exception $e) {
-    return $e;
-  }
+//   // Plain Text Version of message
+//   $mail->AltBody = "Hi $user_name, thank you for submitting the following message on our website: $user_message. We will get back to you with a reply within 1-3 business days.";
 
-}
+//   try {
+//     $mail->send();
+//   } catch (Exception $e) {
+//     return $e;
+//   }
+
+// }
