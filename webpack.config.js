@@ -1,5 +1,7 @@
 const PugPlugin = require("pug-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const autoprefixer = require("autoprefixer");
+
 const path = require("path");
 
 const sourcePath = path.join(__dirname, "src");
@@ -51,12 +53,12 @@ module.exports = {
 			Images: path.join(__dirname, "./src/images/"),
 			Gallery: path.join(__dirname, "./src/components/gallery"),
 		},
-		// extensions: [".tsx", ".ts", ".js"],
 	},
 	// inline-source-map not for production use!
 	devtool: "inline-source-map",
 	devServer: {
 		static: "./dist",
+		historyApiFallback: { index: "/notFound404/index.html" },
 	},
 	plugins: [
 		new PugPlugin({
@@ -81,6 +83,11 @@ module.exports = {
 				},
 			],
 		}),
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				postcss: [autoprefixer()],
+			},
+		}),
 	],
 	optimization: {
 		runtimeChunk: "single",
@@ -93,10 +100,11 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.s[ac]ss$/i,
+				test: /\.scss$/i,
 				use: [
 					// translates css into commonjs
 					"css-loader",
+					"postcss-loader",
 					// compiles s[ac]ss to css
 					"sass-loader",
 				],
