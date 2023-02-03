@@ -11,3 +11,15 @@ for (const [key, value] of params.entries()) {
 		}
 	}
 }
+
+// Manually add input patterns
+const patterns = {
+	string: ".[-_'A-Za-zÀ-ÖØ-öø-ÿ\\s]+",
+	email: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+};
+
+const stringInputs = document.querySelectorAll("input[pattern=string]");
+stringInputs.forEach((input) => input.setAttribute("pattern", patterns.string));
+
+const emailInputs = document.querySelectorAll("input[pattern=email]");
+emailInputs.forEach((input) => input.setAttribute("pattern", patterns.email));
