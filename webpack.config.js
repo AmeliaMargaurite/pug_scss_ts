@@ -1,7 +1,5 @@
 const PugPlugin = require("pug-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const mjml2html = require("mjml");
-
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
@@ -56,6 +54,7 @@ module.exports = {
 			Images: path.join(__dirname, "./src/images/"),
 			Gallery: path.join(__dirname, "./src/components/gallery"),
 		},
+		// extensions: [".tsx", ".ts", ".js"],
 	},
 	// inline-source-map not for production use!
 	devtool: "inline-source-map",
