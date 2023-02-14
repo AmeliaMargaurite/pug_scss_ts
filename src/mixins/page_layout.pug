@@ -3,12 +3,14 @@ include ./page_footer.pug
 block variables
 doctype html 
 
+- var companyName = 'Company Name'
+
 html(lang="en")
   head 
     meta(charset="UTF-8") 
     meta(http-equiv="X-UA-Compatible", content="IE=edge" )
     meta(name="viewport", content="width=device-width, initial-scale=1.0" )
-    title= title === 'Home' ? 'AMDesigned' : title === 'not-found' ? 'Uh oh... | AMDesigned' : title + ' | AMDesigned'
+    title= title === 'Home' ? companyName : title === 'not-found' ? 'Uh oh... | ' + companyName : title + ' | '+ companyName
     script(src=require("../ts/index.ts")) 
     link(href=require('../scss/main.scss') rel='stylesheet')
     link(rel="apple-touch-icon" sizes="180x180" href=require("../favicon/apple-touch-icon.png"))
@@ -22,7 +24,7 @@ html(lang="en")
       posthog.init('phc_Q5ZatJXkoZzmKWt3AMoS43jKkUdAKFU6IjSfMf3WYqP',{api_host:'https://app.posthog.com'})
     block scripts
   body
-    - var pages = {'home': '/', 'contact': '/contact', 'examples': '/examples', 'services': '/services'}
+    - var pages = {'home': '/', 'contact': '/contact', 'examples': '/examples'}
     +page_header(title)
     main#main(class=title.toLowerCase())
       block content
