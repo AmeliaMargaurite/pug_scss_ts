@@ -3,6 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
+const mjml2html = require("mjml");
 
 const sourcePath = path.join(__dirname, "src");
 
