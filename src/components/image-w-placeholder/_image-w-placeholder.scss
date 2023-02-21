@@ -12,6 +12,10 @@
 		position: relative;
 		z-index: -1;
 		object-fit: cover;
+		height: 98%;
+		width: 98%;
+		align-self: center;
+		justify-self: center;
 		filter: blur(2px);
 	}
 

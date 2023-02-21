@@ -4,13 +4,12 @@ mixin page_header(active)
     a.logo(href="/")
       h1 Company Name
 
-    button.menu__button(id= 'hamburger', onclick='toggleMenu()' tabindex="0")
-        span
-        span
-        span
+    button.menu__button(id= 'hamburger', onclick='toggleMenu()' tabindex="0", aria-controls="main-menu", aria-label="Open the menu" )
+      span(aria-hidden="true", focusable="false")
+      span(aria-hidden="true", focusable="false")
+      span(aria-hidden="true", focusable="false")
 
-    nav#nav  
-      
+    nav#main-menu(role="navigation", aria-label="Main menu")
       ul 
         each val, key in pages
           li
