@@ -55,7 +55,7 @@ module.exports = {
 			Images: path.join(__dirname, "./src/images/"),
 			Gallery: path.join(__dirname, "./src/components/gallery"),
 		},
-		// extensions: [".tsx", ".ts", ".js"],
+		extensions: [".tsx", ".ts", ".js"],
 	},
 	// inline-source-map not for production use!
 	devtool: "inline-source-map",
