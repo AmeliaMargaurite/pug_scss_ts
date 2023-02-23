@@ -3,18 +3,23 @@ include ../components/image-w-placeholder/image-w-placeholder.pug
 
 block variables
   - var title = 'Examples'
+  - var page_description = ''
+  - var slug = '/'
+  //- - var page_image = require('../images/web-sites-small-medium-business-ecommerce-seo.jpg')
+  - var page_image_alt = ''
 
 block content
-  section
-    span.showcase__wrapper
+  section.showcase__wrapper
+    span.section__content
       h1 Showcase! 
-      p Get some insperation from our past works of art
-      - var images = require('../components/gallery/gallery_data.json')
-      section.gallery
-        .gallery__wrapper
-          each image in images
-            .img__wrapper(data-size="1920", tabindex="0") 
-              +image-w-placeholder({path: 'gallery/images/' + image.name, alt: image.alt, min: 240, max: 1920})
+      span
+        p Get some insperation from our past works of art
+        - var images = require('../components/gallery/gallery_data.json')
+        section.gallery
+          .gallery__wrapper
+            each image in images
+              .img__wrapper(data-size="1920", tabindex="0") 
+                +image-w-placeholder({path: 'gallery/images/' + image.name, alt: image.alt, min: 240, max: 1920})
 
         gallery-layout(data-images-path="/images")
 block scripts 

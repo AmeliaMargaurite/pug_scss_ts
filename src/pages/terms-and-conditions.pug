@@ -3,8 +3,13 @@ include ../mixins/coming-soon.pug
 
 block variables
   - var title = 'Terms and Conditions'
+  - var page_description = ''
+  - var slug = '/'
+  //- - var page_image = require('../images/web-sites-small-medium-business-ecommerce-seo.jpg')
+  - var page_image_alt = ''
 
 block content
   section
-    h1 Terms and conditions
-    +coming-soon
+    span.section__content
+      h1 Terms and conditions
+      +coming-soon

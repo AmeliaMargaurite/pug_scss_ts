@@ -16,7 +16,7 @@ main.not-found {
 	}
 
 	@media (min-width: $medium) {
-		section {
+		.section__content {
 			grid-template-columns: 1fr 1fr;
 		}
 	}

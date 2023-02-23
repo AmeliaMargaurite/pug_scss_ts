@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /terms-and-conditions
+Disallow: /privacy-policy
+Sitemap: https://website.com.au/sitemap.txt
