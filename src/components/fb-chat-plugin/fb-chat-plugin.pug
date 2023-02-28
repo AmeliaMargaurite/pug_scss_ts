@@ -1,0 +1,10 @@
+mixin fb-chat-plugin({page_id})
+    
+  //- Messenger Chat plugin Code
+  div(id="fb-root")
+
+  //- Your Chat plugin code
+  div(id="fb-customer-chat", class="fb-customerchat")
+  script(src=require('./fb-chat-plugin.ts'), data-page-id=page_id, id="fb-chat-plugin")
+
+  

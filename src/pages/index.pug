@@ -1,6 +1,7 @@
 extends ../mixins/page_layout.pug
 include ../components/build-options/build-options.pug
 include ../components/big-list-item/big-list-item.pug
+include ../components/fb-chat-plugin/fb-chat-plugin.pug
 
 block variables
   - var title = 'Home'
@@ -12,3 +13,4 @@ block variables
 block content
   section 
     div.section__content Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente non sunt, quam saepe ab itaque at cupiditate libero voluptatibus a! Repellat saepe quis tempore hic temporibus voluptatum debitis rem aliquam!
+  +fb-chat-plugin({page_id: "101231991328022"})
