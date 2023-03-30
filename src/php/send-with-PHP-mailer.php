@@ -1,5 +1,5 @@
 <?php
-include_once('./config.php');
+include_once(__DIR__ . '/config.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

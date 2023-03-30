@@ -13,5 +13,5 @@ mixin page_header(active)
       ul 
         each val, key in pages
           li
-            a(href= val class= active.toLowerCase() === key ? 'current': undefined) #{key}
+            a(href= val class= active.toLowerCase() === key ? 'current': undefined, onclick="closeMenu()") #{key}
         

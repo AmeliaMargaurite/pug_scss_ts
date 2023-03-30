@@ -35,7 +35,6 @@ const alterPugFolderStructure = (pathData) => {
 };
 
 module.exports = {
-	mode: "development",
 	entry: {
 		index: "./src/pages/index.pug",
 		notFound404: "./src/pages/notFound404.pug",
@@ -57,12 +56,7 @@ module.exports = {
 		},
 		extensions: [".tsx", ".ts", ".js"],
 	},
-	// inline-source-map not for production use!
-	devtool: "inline-source-map",
-	devServer: {
-		static: "./dist",
-		historyApiFallback: { index: "/notFound404/index.html" },
-	},
+	
 	plugins: [
 		new PugPlugin({
 			filename: alterPugFolderStructure,

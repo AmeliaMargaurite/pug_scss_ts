@@ -5,6 +5,7 @@ export {};
 declare global {
 	interface Window {
 		toggleMenu: () => void;
+		closeMenu: () => void;
 	}
 }
 
@@ -68,3 +69,4 @@ window.addEventListener(
 );
 
 window.toggleMenu = toggleMenu;
+window.closeMenu = closeMenu;
