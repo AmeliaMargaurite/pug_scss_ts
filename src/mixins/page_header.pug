@@ -1,8 +1,13 @@
+include ../components/light-dark-mode-switch/light-dark-mode-switch.pug
+
+
 mixin page_header(active)
   header 
     a.skip-to-content-link(href="#main") Skip to content
-    a.logo(href="/")
-      p.company-name Company Name
+    .logo
+      a(href="/").company-name Company Name
+      +light-dark-mode-switch
+
 
     button.menu__button(id= 'hamburger', onclick='toggleMenu()' tabindex="0", aria-controls="main-menu", aria-label="Open the menu" )
       span(aria-hidden="true", focusable="false")

@@ -1,21 +1,20 @@
 @import "./menuButton";
 
 header {
-	--text-color: hsl(var(--primary));
+	--text-color: hsl(var(--main-text-color));
 	display: grid;
 	grid-template-columns: auto auto;
 	padding: 1.6rem var(--page_padding);
 	color: var(--text-color);
 
-	a.logo {
-		text-decoration: none;
-
+	.logo {
 		img {
 			max-width: 25rem;
 		}
 	}
 
-	p.company-name {
+	.company-name {
+		text-decoration: none;
 		color: var(--text-color);
 		font-size: 3.2rem;
 		font-variant: small-caps;
@@ -23,14 +22,14 @@ header {
 	}
 
 	@media (min-width: $small) {
-		p.company-name {
+		.company-name {
 			font-size: 4.8rem;
 		}
 	}
 }
 
 nav {
-	--mobile-text-color: hsl(var(--secondary));
+	--mobile-text-color: hsl(var(--main-background-color));
 	// display: grid;
 	// justify-items: flex-end;
 	// align-items: center;
@@ -70,7 +69,7 @@ nav {
 
 				&:not(.active):hover {
 					&:after {
-						background: hsl(var(--primary));
+						background: hsl(var(--main-text-color));
 					}
 				}
 			}
@@ -83,7 +82,7 @@ nav {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background: hsl(var(--dark), 0.98);
+		background: hsl(var(--base-color), 0%, 0.98);
 		z-index: var(--menu-zIndex);
 		grid-template-rows: max-content auto;
 		padding: var(--page_padding);

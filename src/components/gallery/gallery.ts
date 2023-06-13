@@ -1,6 +1,7 @@
 window.addEventListener("load", () => {
 	const wrappers = document.getElementsByClassName("img__wrapper");
-
+	// @to-do Rework this to have event listeners on single wrapper
+	// use e.target to open specific image
 	if (wrappers.length > 0) {
 		for (let wrapper of wrappers) {
 			wrapper.addEventListener("click", (e) => openZoom(e, wrapper));

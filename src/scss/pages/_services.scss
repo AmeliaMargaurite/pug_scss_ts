@@ -10,7 +10,7 @@
 		padding: 3.2rem;
 
 		&:nth-child(odd) {
-			background: hsl(var(--dark), 0.025);
+			background: hsl(var(--base-color), 0%, 0.025);
 		}
 
 		& .title__wrapper {

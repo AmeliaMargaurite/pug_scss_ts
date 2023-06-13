@@ -2,7 +2,7 @@
 	display: grid;
 	row-gap: 3.2rem;
 	column-gap: 3.2rem;
-	background: hsl(var(--light));
+	background: hsl(var(--base-color), 100%);
 	padding: 2.4rem;
 	border-radius: 0.8rem;
 	height: max-content;
@@ -21,7 +21,7 @@
 		line-height: 1;
 		color: hsl(var(--highlight));
 		align-self: flex-start;
-		text-shadow: 2px 2px 1px hsl(var(--dark), 0.8);
+		text-shadow: 2px 2px 1px hsl(var(--base-color), 0%, 0.8);
 
 		&.circle {
 			width: 6.4rem;

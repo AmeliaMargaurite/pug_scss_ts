@@ -1,9 +1,28 @@
 .image-w-placeholder {
 	display: grid;
 	overflow: hidden;
+	width: 100%;
 
-	.placeholder-image,
+	picture,
+	figure {
+		display: grid;
+	}
+
+	figure {
+		grid-template-rows: auto max-content;
+	}
+
 	picture {
+		source,
+		img {
+			grid-row: 1;
+			grid-column: 1;
+		}
+	}
+	.placeholder-image,
+	picture,
+	figure {
+		overflow: hidden;
 		grid-row: 1;
 		grid-column: 1;
 	}
@@ -22,6 +41,21 @@
 	img {
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
+		object-fit: cover;
+	}
+
+	figcaption {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: hsl(var(--base-color));
+		padding-block: 0.4rem;
+	}
+
+	&.contain {
+		.placeholder-image,
+		img {
+			object-fit: contain;
+		}
 	}
 }

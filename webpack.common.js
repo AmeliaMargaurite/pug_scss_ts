@@ -7,6 +7,8 @@ const mjml2html = require("mjml");
 
 const sourcePath = path.join(__dirname, "src");
 
+const calcImageData = require("./src/js/image-helpers.js");
+
 const alterPugFolderStructure = (pathData) => {
 	const sourceFile = pathData.filename;
 	const relativeFile = path.relative(sourcePath, sourceFile);
@@ -35,15 +37,6 @@ const alterPugFolderStructure = (pathData) => {
 };
 
 module.exports = {
-	entry: {
-		index: "./src/pages/index.pug",
-		notFound404: "./src/pages/notFound404.pug",
-		contact: "./src/pages/contact.php.pug",
-		confirmation: "./src/pages/confirmation.pug",
-		examples: "./src/pages/examples.pug",
-		termsConditions: "./src/pages/terms-and-conditions.pug",
-		privacyPolicy: "./src/pages/privacy-policy.pug",
-	},
 	output: {
 		path: path.join(__dirname, "dist/"),
 		publicPath: "/",
@@ -53,10 +46,12 @@ module.exports = {
 		alias: {
 			Images: path.join(__dirname, "./src/images/"),
 			Gallery: path.join(__dirname, "./src/components/gallery"),
+			TS: path.join(__dirname, "./src/ts"),
+			JS: path.join(__dirname, "./src/js"),
 		},
 		extensions: [".tsx", ".ts", ".js"],
 	},
-	
+
 	plugins: [
 		new PugPlugin({
 			filename: alterPugFolderStructure,
@@ -67,6 +62,7 @@ module.exports = {
 			css: {
 				filename: "/css/[name].[contenthash].css",
 			},
+			locals: [calcImageData],
 		}),
 		new CopyPlugin({
 			patterns: [

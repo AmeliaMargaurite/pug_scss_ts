@@ -1,8 +1,7 @@
 :root {
-	--dark: 0, 0%, 0%;
-	--light: 0, 0%, 100%;
-	--primary: var(--dark);
-	--secondary: var(--light);
+	--base-h: 20;
+	--base-color: var(--base-h), 50%;
+
 	--highlight: 157, 94%, 42%;
 	--warning: 0, 100%, 50%;
 
@@ -19,7 +18,7 @@
 	--input_padding: 0.8rem;
 
 	// BORDERS
-	--input_border: 1px solid hsl(var(--primary), 0.2);
+	--input_border: 1px solid hsl(var(--main-text-color), 0.2);
 	--input_border_radius: 0.4rem;
 
 	// SHADOWS
@@ -35,6 +34,46 @@
 		5.6px 5.1px 10.9px -0.2px hsl(var(--shadow-color) / 0.42),
 		10.2px 9.3px 19.9px -0.3px hsl(var(--shadow-color) / 0.59),
 		18.3px 16.7px 35.7px -0.4px hsl(var(--shadow-color) / 0.76);
+
+	// Dark Mode
+	--main-text-color-dark: var(--base-color), 85%;
+	--main-background-color-dark: var(--base-color), 0%;
+	--body-bg-dark: hsl(var(--base-color), 20%);
+	--highlight-dark: var(--yellow500); // change
+	--text-color-dark: hsl(var(--base-color), 100%, 0.8);
+	--blue500-dark: 249, 56%, 45%;
+	--yellow500-dark: 36, 100%, 51%;
+
+	&[color-mode="dark"] {
+		--main-text-color: var(--main-text-color-dark);
+		--main-background-color: var(--main-background-color-dark);
+		--body-bg: var(--body-bg-dark);
+		--highlight: var(--highlight-dark);
+		--text-color: var(--text-color-dark);
+		--blue500: var(--blue500-dark);
+		--yellow500: var(--yellow500-dark);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		--main-text-color: var(--main-text-color-dark);
+		--main-background-color: var(--main-background-color-dark);
+		--body-bg: var(--body-bg-dark);
+		--highlight: var(--highlight-dark);
+		--text-color: var(--text-color-dark);
+		--blue500: var(--blue500-dark);
+		--yellow500: var(--yellow500-dark);
+	}
+
+	&,
+	&[color-mode="light"] {
+		--main-text-color: var(--base-color), 0%;
+		--main-background-color: var(--base-color), 90%;
+		--body-bg: hsl(var(--base-color), 90%);
+		--highlight: var(--blue500);
+		--text-color: hsl(var(--base-color), 0.8);
+		--blue500: 249, 56%, 23%;
+		--yellow500: 41, 100%, 57%;
+	}
 }
 
 // BREAKPOINTS

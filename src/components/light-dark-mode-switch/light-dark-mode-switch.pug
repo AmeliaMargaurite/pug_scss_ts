@@ -1,0 +1,7 @@
+mixin light-dark-mode-switch 
+	//- LIGHT / DARK MODE
+	label.sr-only#light-dark-mode-btn__label(for="light-dark-toggle") Switch to #{colorMode === 'light' ? 'dark' : 'light' } mode
+	button(class=`light-dark-toggle ${colorMode}`, onclick="toggleMode()", id="light-dark-toggle")
+		span#light-dark-toggle__label.light-dark-toggle__label #{colorMode === 'light' ? 'dark' : 'light' }
+		span.icon__wrapper
+			span.icon.lightbulb

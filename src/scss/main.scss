@@ -16,12 +16,8 @@ body {
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: max-content auto max-content;
-	background: linear-gradient(
-		45deg,
-		hsl(var(--dark), 0.01),
-		hsl(var(--dark), 0.05)
-	);
-
+	background: var(--body-bg);
+	color: hsl(var(--main-text-color));
 	@media (min-width: $wholeMenuMinWidth) {
 		overflow-y: auto !important;
 	}
@@ -35,22 +31,6 @@ main {
 	display: grid;
 	row-gap: 6.4rem;
 }
-
-// main {
-// 	display: grid;
-// 	row-gap: 6.4rem;
-// 	padding: var(--page_padding);
-
-// 	@media (min-width: $medium) {
-// 		max-width: $medium;
-// 		margin-inline: auto;
-// 	}
-
-// 	@media (min-width: $large) {
-// 		width: 100%;
-// 		max-width: $large;
-// 	}
-// }
 
 section .section__content {
 	display: grid;
@@ -78,7 +58,7 @@ section .section__content {
 	left: 50%;
 	transform: translateY(-100%);
 	padding: 0.8rem;
-	border: 1px solid hsl(var(--primary));
+	border: 1px solid hsl(var(--main-text-color));
 	border-radius: 0.4rem;
 
 	&:focus {

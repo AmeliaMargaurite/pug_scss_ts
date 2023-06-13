@@ -1,5 +1,5 @@
 footer {
-	--text-color: hsl(var(--primary));
+	--text-color: hsl(var(--main-text-color));
 
 	display: flex;
 	justify-content: space-between;
@@ -34,7 +34,7 @@ footer {
 
 				&:not(.active):hover {
 					&:after {
-						background: hsl(var(--secondary));
+						background: hsl(var(--main-text-color));
 					}
 				}
 			}

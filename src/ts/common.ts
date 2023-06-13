@@ -6,6 +6,7 @@ declare global {
 	interface Window {
 		toggleMenu: () => void;
 		closeMenu: () => void;
+		toggleMode: () => void;
 	}
 }
 
@@ -70,3 +71,70 @@ window.addEventListener(
 
 window.toggleMenu = toggleMenu;
 window.closeMenu = closeMenu;
+
+/**
+ * Light/Dark Mode
+ */
+
+const root = document.querySelector(":root") as HTMLElement;
+
+// TOGGLE
+const toggleMode = (forceMode = "dark") => {
+	// console.log(forceMode);
+	if (isLightMode()) {
+		setMode("dark");
+	} else {
+		setMode("light");
+	}
+};
+
+const setMode = (mode: "light" | "dark") => {
+	const toggleText = document.getElementById("light-dark-toggle__label");
+	const labelText = document.getElementById("light-dark-mode-btn__label");
+	root.setAttribute("color-mode", mode);
+	toggleText
+		? (toggleText.innerHTML = mode === "light" ? "dark" : "light")
+		: null;
+	labelText
+		? (labelText.innerHTML =
+				mode === "light" ? "Switch to dark mode" : "Switch to light mode")
+		: null;
+
+	console.log(toggleText, labelText);
+	toggleText?.parentElement?.classList.add(mode);
+	toggleText?.parentElement?.classList.remove(
+		mode === "light" ? "dark" : "light"
+	);
+	root.className = mode + "Mode";
+	localStorage.setItem("color-mode", mode);
+};
+
+window.toggleMode = toggleMode;
+
+// CHECK MODE
+
+const isLightMode = () => {
+	const colorMode = root.getAttribute("color-mode");
+	return colorMode === "light";
+};
+window.addEventListener("DOMContentLoaded", () => {
+	// WATCH
+
+	window
+		.matchMedia("(prefers-color-scheme: dark)")
+		.addEventListener("change", () => toggleMode());
+
+	// CHECK SAVED STATE
+
+	if (
+		window.matchMedia &&
+		window.matchMedia("(prefers-color-scheme: dark)").matches
+	) {
+		setMode("dark");
+	}
+
+	const storedDataMode = localStorage.getItem("color-mode") as "light" | "dark";
+	if (storedDataMode) {
+		setMode(storedDataMode);
+	}
+});

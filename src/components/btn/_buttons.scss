@@ -1,15 +1,16 @@
 button.btn,
 a.btn {
-	--text-color: hsl(var(--secondary));
+	--text-color: hsl(var(--main-background-color));
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	column-gap: 0.5em;
 	padding: 1.6rem;
-	background: hsl(var(--primary), 0.85);
+	background: hsl(var(--main-text-color), 0.85);
 	color: var(--text-color);
 	border-radius: var(--input_border_radius);
-	box-shadow: inset 0 0 10px hsl(var(--primary)), var(--shadow-elevation-medium);
+	box-shadow: inset 0 0 10px hsl(var(--main-text-color)),
+		var(--shadow-elevation-medium);
 	border: none;
 	font-weight: 600;
 	letter-spacing: 0.15em;
@@ -19,9 +20,9 @@ a.btn {
 	cursor: pointer;
 
 	&.secondary {
-		--text-color: hsl(var(--primary));
+		--text-color: hsl(var(--main-text-color));
 		border: var(--input_border);
-		background: hsl(var(--secondary));
+		background: hsl(var(--main-background-color));
 		box-shadow: var(--shadow-elevation-medium);
 
 		&:hover {
@@ -30,11 +31,12 @@ a.btn {
 	}
 
 	&:hover {
-		box-shadow: inset 0 0 10px hsl(var(--primary)), var(--shadow-elevation-low);
+		box-shadow: inset 0 0 10px hsl(var(--main-text-color)),
+			var(--shadow-elevation-low);
 	}
 
 	&:active {
-		background: hsl(var(--primary));
+		background: hsl(var(--main-text-color));
 	}
 
 	&.mini {
